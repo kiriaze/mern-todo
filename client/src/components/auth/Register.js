@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { register } from '../../actions/auth';
 
 const Register = props => {
-	return <div></div>;
+	return <div>Register for an account</div>;
 };
 
 Register.propTypes = {};

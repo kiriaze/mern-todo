@@ -9,6 +9,7 @@ const Landing = ({ isAuthenticated }) => {
 	} else {
 		return (
 			<section className="landing">
+				<h1 className="">Welcome to MernDo!</h1>
 				<Link to="/register" className="">
 					Sign Up
 				</Link>

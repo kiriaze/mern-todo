@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../actions/auth';
 
 const Login = props => {
-	return <div></div>;
+	return <div>Log into your account</div>;
 };
 
 Login.propTypes = {};
