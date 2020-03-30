@@ -143,4 +143,22 @@ router.delete('/:id', auth, async (req, res) => {
 	}
 });
 
+// @route    PUT api/tasks/like/:id
+// @desc     Like a task by ID
+// @access   Private
+
+// @todo - note: do we need an unlike route? can we just hit the same like route and if its already been liked by user, we remove it?
+
+// @route    PUT api/tasks/unlike/:id
+// @desc     Unlike a task by ID
+// @access   Private
+
+// @route    POST api/tasks/comment/:id
+// @desc     Comment on a task
+// @access   Private
+
+// @route    DELETE api/tasks/comment/:id
+// @desc     Delete a task comment by ID
+// @access   Private
+
 module.exports = router;
