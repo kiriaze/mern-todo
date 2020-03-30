@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
@@ -11,8 +12,6 @@ import {
 } from './types';
 
 import setAuthToken from '../utils/setAuthToken';
-
-// dispatch from redux
 
 // Load User
 export const loadUser = () => async dispatch => {
@@ -59,12 +58,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 	} catch (err) {
 		const errors = err.response.data.errors;
 		if (errors) {
-			errors.map(error =>
-				// trying something different here, rather than passing in setAlert func with message, see if we can dispatch an object with only msg...
-				dispatch({
-					msg: error.msg
-				})
-			);
+			errors.map(error => dispatch(setAlert(error.msg, 'danger')));
 		}
 		dispatch({
 			type: REGISTER_FAIL
@@ -97,11 +91,7 @@ export const login = ({ email, password }) => async dispatch => {
 	} catch (err) {
 		const errors = err.response.data.errors;
 		if (errors) {
-			errors.map(error =>
-				dispatch({
-					msg: error.message
-				})
-			);
+			errors.map(error => dispatch(setAlert(error.msg, 'danger')));
 		}
 		dispatch({
 			type: LOGIN_FAIL
