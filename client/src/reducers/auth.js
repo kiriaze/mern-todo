@@ -7,7 +7,7 @@ import {
 	USER_LOADED,
 	AUTH_ERROR,
 	LOGOUT,
-	CLEAR_PROFILE,
+	// CLEAR_PROFILE,
 	ACCOUNT_DELETED
 } from '../actions/types';
 

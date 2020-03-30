@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Dashboard from '../dashboard/Dashboard';
+import Tasks from '../tasks/Tasks';
 import Alert from '../layout/Alert';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
@@ -16,6 +17,7 @@ const Routes = () => {
 				<Route exact path="/register" component={Register} />
 				<Route exact path="/login" component={Login} />
 				<PrivateRoute exact path="/dashboard" component={Dashboard} />
+				<PrivateRoute exact path="/tasks" component={Tasks} />
 				<Route component={NotFound} />
 			</Switch>
 		</div>
