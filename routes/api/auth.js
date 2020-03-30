@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const auth = require('../../middleware/auth');
-const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const config = require('config'); // package for access to config/ dir
 const { check, validationResult } = require('express-validator');
+
+const User = require('../../models/User');
 
 // @route    GET api/auth
 // @desc     Auth route
@@ -33,7 +34,7 @@ router.post(
 	async (req, res) => {
 		const errors = validationResult(req);
 
-		if (errors) {
+		if (!errors.isEmpty()) {
 			return res.status(400).json({
 				errors: errors.array()
 			});
@@ -57,7 +58,7 @@ router.post(
 			}
 
 			// compare plain text pw with db user pw
-			const isMatch = await bcrypt(password, user.password);
+			const isMatch = await bcrypt.compare(password, user.password);
 
 			if (!isMatch) {
 				return res.status(400).json({

@@ -6,13 +6,30 @@ const jwt = require('jsonwebtoken');
 const config = require('config'); // package for access to config/ dir
 const { check, validationResult } = require('express-validator');
 
+//
+const auth = require('../../middleware/auth');
+
+// Models
 const User = require('../../models/User');
 
-// @route    GET api/auth
+// @route    GET api/users
+// @desc     Get all users
+// @access   Public
+router.get('/', async (req, res) => {
+	try {
+		let users = await User.find().select('-password');
+		res.json(users);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+// @route    POST api/users
 // @desc     Register User
 // @access   Public
 router.post(
-	'/api/auth',
+	'/',
 	[
 		check('name', 'Name is required').not().isEmpty(),
 		check('email', 'An email is required').isEmail(),
@@ -26,30 +43,30 @@ router.post(
 	async (req, res) => {
 		const errors = validationResult(req);
 
-		if (errors) {
+		if (!errors.isEmpty()) {
 			return res.status(400).json({
 				errors: errors.array()
 			});
 		}
 
-		const { email, password } = req.body;
+		const { name, email, password } = req.body;
 
 		try {
 			// check if user exist
 			let user = await User.findOne({ email });
 
-			if (!user) {
+			if (user) {
 				return res.status(400).json({
 					errors: [
 						{
-							msg: 'Invalid Credentials'
+							msg: 'User already exists'
 						}
 					]
 				});
 			}
 
 			const avatar = gravatar.url(email, {
-				s: 200,
+				s: '200',
 				r: 'pg',
 				d: 'mm'
 			});
@@ -77,7 +94,7 @@ router.post(
 				payload,
 				config.get('jwtSecret'),
 				{
-					expires: 360000
+					expiresIn: 360000
 				},
 				(err, token) => {
 					if (err) throw err;
@@ -90,5 +107,29 @@ router.post(
 		}
 	}
 );
+
+// @route    DELETE api/users
+// @desc     Delete User
+// @access   Private
+router.delete('/', auth, async (req, res) => {
+	try {
+		// Remove users tasks
+		await Task.deleteMany({
+			user: req.user.id
+		});
+
+		// Remove user
+		await User.findOneAndRemove({
+			_id: req.user.id
+		});
+
+		res.json({
+			msg: 'User deleted'
+		});
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
 
 module.exports = router;

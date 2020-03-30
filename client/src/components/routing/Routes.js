@@ -10,7 +10,6 @@ import PrivateRoute from '../routing/PrivateRoute';
 const Routes = () => {
 	return (
 		<div className="">
-			{/* switch between routes */}
 			<Switch>
 				<Route exact path="/register" component={Register} />
 				<Route exact path="/login" component={Login} />
