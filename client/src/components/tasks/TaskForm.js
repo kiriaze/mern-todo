@@ -6,8 +6,8 @@ import { addTask } from '../../actions/task';
 const initialState = {
 	title: '',
 	description: '',
-	assignedTo: null,
-	project: null,
+	assignedTo: undefined,
+	project: undefined,
 	dueDate: '',
 	tags: [],
 	status: 'open',
