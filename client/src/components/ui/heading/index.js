@@ -4,53 +4,72 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const sharedStyling = css`
-	font-family: Helvetica;
 	display: block;
 	font-weight: 700;
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Frank Ruhl Libre', serif;
 `;
 
 ///////////////////////////////////////////////
 
+// although this way is more concise, could be harder to read if each level has lots of styles
 const StyledHeading = styled.h1`
+	
 	${sharedStyling}
+	
 	${props =>
 		// for the prop default 1 passed in
 		(props.level === 1 || props.level === '1') &&
 		css`
+			color: forestgreen;
 			font-size: 4rem;
 		`}
+	
 	${props =>
 		props.level === '2' &&
 		css`
+			color: grey;
 			font-size: 3.6rem;
 		`}
+	
 	${props =>
 		props.level === '3' &&
 		css`
+			color: orange;
 			font-size: 3.2rem;
 		`}
+	
 	${props =>
 		props.level === '4' &&
 		css`
 			font-size: 2.8rem;
+			letter-spacing: 1rem;
 		`}
+	
 	${props =>
 		props.level === '5' &&
 		css`
 			font-size: 2.4rem;
+			text-transform: uppercase;
 		`}
+
 	${props =>
 		props.level === '6' &&
 		css`
 			font-size: 1.8rem;
+			font-weight: 100;
 		`}
+
 `;
 
 const Heading = ({ level, ...rest }) => {
 	return <StyledHeading level={level} as={`h${level}`} {...rest} />;
 };
 
-///////////////////////////////////////////////
+///////////////////////////////////////////////////////
+// Below gives albeit seemingly redundant,
+// affords better readability as things are scoped separately
+//////////////////////////////////////////////////////
 
 // const H1 = styled.h1`
 // 	${sharedStyling}
