@@ -16,9 +16,8 @@ const Tasks = ({ getTasks, task: { tasks, loading } }) => {
 		<Fragment>
 			<h1 className="">Tasks</h1>
 			<div className="tasks">
-				{tasks.map(task => (
-					<TaskItem key={task._id} task={task} />
-				))}
+				{tasks.length > 0 &&
+					tasks.map(task => <TaskItem key={task._id} task={task} />)}
 			</div>
 		</Fragment>
 	);

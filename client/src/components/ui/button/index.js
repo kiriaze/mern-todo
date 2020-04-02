@@ -4,6 +4,8 @@ import { darken } from 'polished';
 
 // @todo - rename component directory to link, since we can house all the different types in one file with multiple exports (e.g. below)?
 
+// using color prop for button style, which is semantic - but kinda looks weird when implemented - would theme be better, but unnecessary to pass a whole object just for one val..
+
 // instead of defining theme here, pull into a config/vars global
 const theme = {
 	text: {

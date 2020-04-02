@@ -12,7 +12,8 @@ const sharedStyling = css`
 
 ///////////////////////////////////////////////
 
-// although this way is more concise, could be harder to read if each level has lots of styles
+// although this way is more concise,
+// could be harder to read if each level has lots of styles
 const StyledHeading = styled.h1`
 	
 	${sharedStyling}

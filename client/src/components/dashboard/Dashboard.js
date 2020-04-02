@@ -21,7 +21,7 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 				Delete my account
 			</button>
 
-			{/* style-components */}
+			{/* styled-components */}
 			<Button color="danger" onClick={() => deleteAccount()}>
 				Delete my account
 			</Button>

@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { deleteTask } from '../../actions/task';
+import { Link } from 'react-router-dom';
+import { Button } from '../ui/button';
+
+// which is better? more sustainable? cleaner? simpler? more effecient? quicker to proto? better maintained in larger teams?
+// // import './taskItem.css';
+import styled, { css } from 'styled-components';
+
+const StyledItem = styled.div`
+	margin: 1rem auto 0;
+	max-width: 40rem;
+	padding: 2rem 3rem;
+	background-color: #f5f5f5;
+	&:first-child {
+		margin-top: 0;
+	}
+`;
+//
 
 const TaskItem = ({
 	auth,
@@ -17,11 +34,14 @@ const TaskItem = ({
 		dueDate,
 		date
 	},
-	deleteTask
+	deleteTask,
+	showActions
 }) => {
 	return (
-		<div>
-			<h4>{title}</h4>
+		<StyledItem className="task-item">
+			<h4>
+				<Link to={`/tasks/${_id}`}>{title}</Link>
+			</h4>
 			<span>
 				Issued on: <Moment format="MM/DD/YYYY">{date}</Moment>
 			</span>
@@ -34,17 +54,36 @@ const TaskItem = ({
 			{/*5e7e8339fc348f1e19a6fd16*/}
 			<br />
 			<p>{description}</p>
-			{!auth.loading && user === auth.user._id && (
-				<button
-					onClick={e => deleteTask(_id)}
-					type="button"
-					className="btn btn-danger"
-				>
-					Delete Task
-				</button>
+			{showActions && (
+				<Fragment>
+					{!auth.loading && user === auth.user._id && (
+						// <button
+						// 	onClick={e => deleteTask(_id)}
+						// 	type="button"
+						// 	className="btn btn-danger"
+						// >
+						// 	Delete Task
+						// </button>
+						<Button
+							color="danger"
+							onClick={e => {
+								if (window.confirm('Are you sure?')) {
+									deleteTask(_id);
+								}
+							}}
+						>
+							Delete Task
+						</Button>
+					)}
+				</Fragment>
 			)}
-		</div>
+		</StyledItem>
 	);
+};
+// <div className="task-item"></div>
+
+TaskItem.defaultProps = {
+	showActions: true
 };
 
 TaskItem.propTypes = {

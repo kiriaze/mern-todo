@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import { getTask } from '../../actions/task';
 import TaskItem from '../tasks/TaskItem';
-import CommentForm from './CommentForm';
-import CommentItem from './CommentItem';
+// import CommentForm from './CommentForm';
+// import CommentItem from './CommentItem';
 
 const Task = ({ getTask, task: { task, loading }, match }) => {
 	useEffect(() => {
@@ -20,11 +20,13 @@ const Task = ({ getTask, task: { task, loading }, match }) => {
 				Back to tasks
 			</Link>
 			<TaskItem task={task} showActions={false} />
-			<CommentForm taskId={task._id} />
+			{/*<CommentForm taskId={task._id} />*/}
 			<div className="comments">
-				{task.comments.map(comment => (
-					<CommentItem key={comment._id} comment={comment} taskId={task._id} />
-				))}
+				{
+					// task.comments.map(comment => (
+					// <CommentItem key={comment._id} comment={comment} taskId={task._id} />
+					// ))
+				}
 			</div>
 		</Fragment>
 	);

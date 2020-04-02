@@ -20,11 +20,21 @@ export default function (state = initialState, action) {
 	const { type, payload } = action;
 	switch (type) {
 		case GET_TASKS:
-		case GET_TASK:
-		case TASK_ERROR:
 			return {
 				...state,
 				tasks: payload,
+				loading: false
+			};
+		case GET_TASK:
+			return {
+				...state,
+				task: payload,
+				loading: false
+			};
+		case TASK_ERROR:
+			return {
+				...state,
+				error: payload,
 				loading: false
 			};
 		case ADD_TASK:

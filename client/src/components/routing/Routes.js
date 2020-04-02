@@ -5,6 +5,7 @@ import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Dashboard from '../dashboard/Dashboard';
 import Tasks from '../tasks/Tasks';
+import Task from '../task/Task';
 import TaskForm from '../tasks/TaskForm';
 import Alert from '../layout/Alert';
 import NotFound from '../layout/NotFound';
@@ -19,6 +20,7 @@ const Routes = () => {
 				<Route exact path="/login" component={Login} />
 				<PrivateRoute exact path="/dashboard" component={Dashboard} />
 				<PrivateRoute exact path="/tasks" component={Tasks} />
+				<PrivateRoute exact path="/tasks/:id" component={Task} />
 				<PrivateRoute exact path="/add-task" component={TaskForm} />
 				<Route component={NotFound} />
 			</Switch>

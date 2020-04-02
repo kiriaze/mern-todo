@@ -1,0 +1,12 @@
+/* still unclear as to which is best, styling via css classes, or styled-component  */
+.tasks {
+}
+
+.task-item {
+	padding: 2rem 3rem;
+	background: #f5f5f5;
+}
+
+.task-item + .task-item {
+	margin-top: 1rem;
+}
