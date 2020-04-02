@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addTask } from '../../actions/task';
 
+// @todo - replace with an external form component or add styles, etc..
+
 const initialState = {
 	title: '',
 	description: '',

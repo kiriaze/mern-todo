@@ -1,4 +1,6 @@
-/* spinner */
+/* spinner 
+@todo - abstract, as this is mish-mashed currently, with svg, .icon, etc.
+*/
 svg {
 	max-width: 100%;
 	height: auto;

@@ -5,20 +5,8 @@ import { Link } from 'react-router-dom';
 import { deleteAccount } from '../../actions/auth';
 // import TaskForm from '../tasks/TaskForm';
 
-/////////////////////////////////////////////////////
-// Notes:
-// - Styled-components might be the way to go, with a lightweight framework as the foundation; think utility helpers and base styles - and then build upon with SC, could also import components when needed from other libraries/sources instead of writing from scratch. e.g. modals
-
-// tailwind + styled-components (best custom)
-// bulma - quick prototype css classes (bootsrapish)
-// chakra - quick prototype + react
-
-// components needed: calendar, drag/drop, toasters, alerts, notifications, tags, badges, search dropdown filters, tables, corner dialogs,
-
-// style types: Evergreen, ChakraUi(toasts)
-/////////////////////////////////////////////////////
-
-import { Button } from '../ui/button';
+import Heading from '../ui/heading';
+import { Button, StyledLink } from '../ui/button';
 
 const Dashboard = ({ auth: { user }, deleteAccount }) => {
 	return (
@@ -27,17 +15,38 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 			<p className="lead">Welcome {user && user.name} </p>
 			<Link to="/tasks">View Tasks</Link>
 			<Link to="/add-task">Add Task</Link>
+
+			{/* classical class styling */}
 			<button onClick={() => deleteAccount()} className="btn btn-danger">
 				Delete my account
 			</button>
 
-			<button className="btn btn-blue">Button</button>
+			{/* style-components */}
+			<Button color="danger" onClick={() => deleteAccount()}>
+				Delete my account
+			</Button>
+
+			<Heading>Heading 1</Heading>
+			<Heading level="2">Heading 2</Heading>
+			<Heading level="3">Heading 3</Heading>
+			<Heading level="4">Heading 4</Heading>
+			<Heading level="5">Heading 5</Heading>
+			<Heading level="6">Heading 6</Heading>
+
+			<StyledLink to="/tasks" color="primary">
+				Testing custom Link Tasks
+			</StyledLink>
 
 			{/* styled components */}
-			<Button>Normal Button</Button>
-			<Button danger>Danger Button</Button>
-			<Button info>Info Button</Button>
-			<Button success>Success Button</Button>
+			<div className="">
+				<Button>Normal Button</Button>
+				<Button color="primary">Primary Button</Button>
+				<Button color="secondary">Secondary Button</Button>
+				<Button color="info">Info Button</Button>
+				<Button color="warning">Warning Button</Button>
+				<Button color="success">Success Button</Button>
+				<Button color="danger">Danger Button</Button>
+			</div>
 			{/* /styled components */}
 		</Fragment>
 	);

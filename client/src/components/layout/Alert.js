@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// @todo
+// - either add styling, or incorporate an external component like toasters/alerts/dialogs/notifcations
+// - move to ui
+
 const Alert = ({ alerts }) =>
 	alerts !== null &&
 	alerts.length > 0 &&
