@@ -23,6 +23,7 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				tasks: payload,
+				// task: null, // without reset, theres a flash of previous val when viewing single task item
 				loading: false
 			};
 		case GET_TASK:

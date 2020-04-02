@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { deleteAccount } from '../../actions/auth';
 // import TaskForm from '../tasks/TaskForm';
 
-import Heading from '../ui/heading';
-import { Button, StyledLink } from '../ui/button';
+import Heading from '../ui/Heading';
+import { Button, StyledLink } from '../ui/Button';
 
 const Dashboard = ({ auth: { user }, deleteAccount }) => {
 	return (

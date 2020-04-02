@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { deleteTask } from '../../actions/task';
 import { Link } from 'react-router-dom';
-import { Button } from '../ui/button';
+import { Button } from '../ui/Button';
 
 // which is better? more sustainable? cleaner? simpler? more effecient? quicker to proto? better maintained in larger teams?
 // // import './taskItem.css';
