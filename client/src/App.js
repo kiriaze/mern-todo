@@ -11,6 +11,10 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
+// should these live within the root index.js instead and wrapped around <App />?
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from './theme';
+
 import './App.css';
 
 /////////////////////////////////////////////////////
@@ -18,8 +22,11 @@ import './App.css';
 // - Styled-components might be the way to go, with a lightweight framework as the foundation; think utility helpers and base styles - and then build upon with SC, could also import components when needed from other libraries/sources instead of writing from scratch. e.g. modals
 
 // tailwind + styled-components (best custom; requires the npm package for the best experience instead of cdn css version)
-// rebassjs - react components for layout with props (interesting)
-// basscss - atomic lass based css library + styled components (simple)
+
+// rebassjs - react components for layout with props (interesting, strongly considering this route)
+
+// basscss - atomic class based css library + styled components (simple, no components, just utilities)
+
 // bulma - quick prototype css classes (bootsrapish)
 // chakra - quick prototype + react
 
@@ -39,17 +46,20 @@ const App = () => {
 	}, []);
 
 	return (
-		<Provider store={store}>
-			<Router>
-				<Fragment>
-					<Navbar />
-					<Switch>
-						<Route exact path="/" component={Landing} />
-						<Route component={Routes} />
-					</Switch>
-				</Fragment>
-			</Router>
-		</Provider>
+		<ThemeProvider theme={theme}>
+			<Provider store={store}>
+				<Router>
+					<Fragment>
+						<Navbar />
+						<Switch>
+							<Route exact path="/" component={Landing} />
+							<Route component={Routes} />
+						</Switch>
+					</Fragment>
+				</Router>
+			</Provider>
+			<GlobalStyle />
+		</ThemeProvider>
 	);
 };
 

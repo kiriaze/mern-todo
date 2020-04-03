@@ -1,5 +1,6 @@
 /* testing setting base font size for rems along with other styles for styled-components to inherit */
-*,
+/* should these be in our GlobalStyle in root rather, instead of splitting styles between css and js? either way, keep it consistent, otherwise its a shit show */
+/**,
 *:before,
 *:after {
 	box-sizing: border-box;
@@ -11,12 +12,10 @@
 html {
 	font-size: 10px;
 }
-
 body {
 	line-height: 1.5;
 	font-size: 1.6rem;
-	font-family: 'Hind Vadodara', sans-serif;
-}
+}*/
 /* /reset */
 
 /* tailwind (requires: https://github.com/tailwindcss/designing-with-tailwindcss/tree/master/01-getting-up-and-running/01-setting-up-tailwind-and-postcss) */

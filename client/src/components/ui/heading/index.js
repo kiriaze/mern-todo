@@ -6,11 +6,14 @@ import styled, { css } from 'styled-components';
 const sharedStyling = css`
 	display: block;
 	font-weight: 700;
-	font-family: 'Open Sans', sans-serif;
-	font-family: 'Frank Ruhl Libre', serif;
+	font-family: ${props => props.theme.fonts.heading};
+	// font-family: 'Open Sans', sans-serif;
+	// font-family: 'Frank Ruhl Libre', serif;
 `;
 
 ///////////////////////////////////////////////
+
+// // note: i still don't really agree with global typography styles being scoped to a component, rather than say a config of some kind with theme defaults...e.g. ThemeProvider from root of app
 
 // although this way is more concise,
 // could be harder to read if each level has lots of styles
@@ -23,13 +26,13 @@ const StyledHeading = styled.h1`
 		(props.level === 1 || props.level === '1') &&
 		css`
 			color: forestgreen;
-			font-size: 4rem;
+			// font-size: 4rem;
 		`}
 	
 	${props =>
 		props.level === '2' &&
 		css`
-			color: grey;
+			color: ${props.theme.colors.primary};
 			font-size: 3.6rem;
 		`}
 	

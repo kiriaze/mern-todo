@@ -4,23 +4,7 @@ import { darken } from 'polished';
 
 // @todo - rename component directory to link, since we can house all the different types in one file with multiple exports (e.g. below)?
 
-// using color prop for button style, which is semantic - but kinda looks weird when implemented - would theme be better, but unnecessary to pass a whole object just for one val..
-
-// instead of defining theme here, pull into a config/vars global
-const theme = {
-	text: {
-		default: ''
-	},
-	bg: {},
-	colors: {
-		primary: 'royalblue',
-		secondary: 'rgb(249, 119, 148)',
-		success: '#25bd25',
-		info: 'dodgerblue',
-		warning: 'burlywood',
-		danger: 'red'
-	}
-};
+// using color prop for button style, which is semantic - but kinda looks weird when implemented - would variant be a better name for the prop?
 
 const buttonStyle = css`
 	display: inline-block;
@@ -29,7 +13,8 @@ const buttonStyle = css`
 	margin: 0.5rem 1rem;
 	cursor: pointer;
 	color: white;
-	background: black;
+	background: ${props => props.theme.colors.baseDark};
+	// background: var(--theme-ui-colors-danger);
 	transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out;
 	&:hover {
 		background-color: rgb(98, 58, 162);
@@ -37,10 +22,10 @@ const buttonStyle = css`
 
 	${props =>
 		css`
-			background-color: ${theme.colors[props.color]};
+			background-color: ${props.theme.colors[props.color]};
 			&:hover {
 				background-color: ${props =>
-					props.color && darken(0.1, theme.colors[props.color])};
+					props.color && darken(0.1, props.theme.colors[props.color])};
 			}
 		`}
 `;
