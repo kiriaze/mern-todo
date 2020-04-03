@@ -2,7 +2,10 @@ import { css } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
+	// note: or consider a utility like https://github.com/mg901/styled-breakpoints
 	breakpoints: {
+		// tablet: '76.8rem',
+		// desktop: '92rem'
 		tiny: '32rem',
 		small: '48rem',
 		medium: '76.8rem',
@@ -11,8 +14,6 @@ export const theme = {
 		xxlarge: '144rem',
 		xxxlarge: '192rem'
 	},
-
-	// fontSizes: [10, 12, 14, 16, 20, 24, 32, 48, 64],
 	fontSizes: {
 		base: '10px',
 		body: '1.6rem'
@@ -23,7 +24,12 @@ export const theme = {
 		// }
 	},
 
-	// space: [0, 4, 8, 16, 32, 64, 128, 256], // idk...
+	// // idk...
+	// spaces: {
+	// 	small: '4rem',
+	// 	medium: '8rem',
+	// 	large: '16rem'
+	// },
 
 	fonts: {
 		body: 'Open Sans, sans-serif',
@@ -78,6 +84,7 @@ export const theme = {
 		socialPinterest: '#bd081c',
 		socialTwitter: '#1da1f2'
 	}
+
 	// // vs say this
 	// colors: {
 	// 	selection: {
@@ -121,60 +128,93 @@ export const theme = {
 };
 
 // testing css vars; testing naming convention and matching theme defined styles above
-const cssVars = css`
-	--theme-ui-colors-text: ${theme.colors.brandText};
-	--theme-ui-colors-background: ${theme.colors.brandOffwhite};
-	--theme-ui-colors-primary: ${theme.colors.primary};
-	--theme-ui-colors-secondary: ${theme.colors.secondary};
-	--theme-ui-colors-success: ${theme.colors.success};
-	--theme-ui-colors-info: ${theme.colors.info};
-	--theme-ui-colors-warning: ${theme.colors.warning};
-	--theme-ui-colors-danger: ${theme.colors.danger};
-`;
+const renderCssVars = theme => {
+	let rootVars = '';
+
+	const iterate = (obj, prefix = null) => {
+		Object.keys(obj).forEach(key => {
+			if (typeof obj[key] === 'object') {
+				// console.log(`key: ${key}, value: ${obj[key]}`);
+				let concatPre = !prefix ? `${key}-` : prefix + `${key}-`;
+				iterate(obj[key], concatPre);
+			} else {
+				// console.log(`key: ${key}, value: ${obj[key]}`);
+				rootVars += `--theme-${prefix}${key}: ${obj[key]};`;
+			}
+		});
+	};
+
+	iterate(theme);
+
+	return rootVars;
+};
 
 export const GlobalStyle = createGlobalStyle`
 	// resets (if we're not using tailwind or any other system)
-	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video, button {  
-	   margin: 0;  
-	   padding: 0;  
-	   border: 0;  
-	   font-size: 100%;  
-	   font: inherit;  
-	   vertical-align: baseline; 
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {  
+		margin: 0;  
+		padding: 0;  
+		border: 0;  
+		font-size: 100%;  
+		font: inherit;  
+		vertical-align: baseline; 
 	}
+	
+	button, input, optgroup, select, textarea {
+		font-family: inherit;
+		font-size: 100%;
+	}
+	
+	[type=button], [type=reset], [type=submit], button {
+		appearance: none;
+		border-width: 0;
+	}
+	
 	a {
 		text-decoration: none;
 	}
+	
 	button {
 		outline: 0;
 	}
+	
 	//
+	
 	:root {
-		// testing css vars
-		${cssVars}
+		// - why are duplicate styles being rendered in inspector?
+		${renderCssVars(theme)}
 	}
+	
 	*,
 	*:before,
 	*:after {
 		box-sizing: inherit;
+		border-width: 0; // tailwind reset
 	}
+	
 	* {
 		margin: 0;
 		padding: 0;
 	}
+	
 	html {
-		font-size: 10px;
+		font-size: ${theme.fontSizes.base};
 		box-sizing: border-box;
 	}
+	
 	body {
-		color: var(--theme-ui-colors-text, #000); // defaults if no var
-		background-color: var(--theme-ui-colors-background, #444);
+		color: var(--theme-colors-text, #000); // defaults if no var
+		// background-color: var(--theme-colors-baseDark);
 		//
 
 		line-height: 1.5;
-		font-size: 1.6rem;
+		font-family: ${theme.fonts.body};
+		font-size: ${theme.fontSizes.body};
 	}
+
+
 	// should this also contain other base/typography styles; e.g. headings?
+	// if we're including them here, at what point, if any, do we have styles within component?
 	h1 {
 		font-size: 2.5rem;
 		@media (min-width: ${theme.breakpoints.small}) {

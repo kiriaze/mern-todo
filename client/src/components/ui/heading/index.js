@@ -33,7 +33,22 @@ const StyledHeading = styled.h1`
 		props.level === '2' &&
 		css`
 			color: ${props.theme.colors.primary};
-			font-size: 3.6rem;
+			// font-size: 3.6rem;
+
+			//
+			font-size: 2rem;
+			@media (min-width: ${props.theme.breakpoints.small}) {
+				font-size: 2.4rem;
+				color: ${props.theme.colors.secondary};
+			}
+			@media (min-width: ${props.theme.breakpoints.medium}) {
+				font-size: 3rem;
+				color: ${props.theme.colors.warning};
+			}
+			@media (min-width: ${props.theme.breakpoints.large}) {
+				font-size: 3.6rem;
+				color: ${props.theme.colors.danger};
+			}
 		`}
 	
 	${props =>
@@ -73,6 +88,7 @@ const Heading = ({ level, ...rest }) => {
 ///////////////////////////////////////////////////////
 // Below gives albeit seemingly redundant,
 // affords better readability as things are scoped separately
+// and could have them be separate imports (over abstraction, but possible)
 //////////////////////////////////////////////////////
 
 // const H1 = styled.h1`

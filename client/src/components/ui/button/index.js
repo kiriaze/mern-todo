@@ -14,7 +14,7 @@ const buttonStyle = css`
 	cursor: pointer;
 	color: white;
 	background: ${props => props.theme.colors.baseDark};
-	// background: var(--theme-ui-colors-danger);
+	// background: var(--theme-colors-danger);
 	transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out;
 	&:hover {
 		background-color: rgb(98, 58, 162);
@@ -32,8 +32,9 @@ const buttonStyle = css`
 
 // // to override any specific button, add this after the rule above
 // ${props =>
-// 	props.color === 'success' &&
+// 	props.color === 'warning' &&
 // 	css`
+// 		color: black;
 // 		background-color: yellow;
 // 		&:hover {
 // 			background-color: ${darken(0.05, 'yellow')};

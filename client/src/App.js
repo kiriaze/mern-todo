@@ -21,9 +21,9 @@ import './App.css';
 // Notes:
 // - Styled-components might be the way to go, with a lightweight framework as the foundation; think utility helpers and base styles - and then build upon with SC, could also import components when needed from other libraries/sources instead of writing from scratch. e.g. modals
 
-// tailwind + styled-components (best custom; requires the npm package for the best experience instead of cdn css version)
+// tailwind + styled-components (best custom; requires the npm package for the best experience instead of cdn css version, and consolidating those classes after a pattern is apparent, could do it via the theme.js or within stylesheets - but pick and stick to one)
 
-// rebassjs - react components for layout with props (interesting, strongly considering this route)
+// rebassjs - react components with props (interesting, strongly considering this route)
 
 // basscss - atomic class based css library + styled components (simple, no components, just utilities)
 
@@ -32,7 +32,7 @@ import './App.css';
 
 // components needed (can import standalone): calendar, drag/drop, toasters, alerts, notifications, tags, badges, search dropdown filters, tables, corner dialogs,
 
-// style types: Evergreen, ChakraUi(toasts)
+// style refs for ui: Evergreen, ChakraUi(toasts)
 /////////////////////////////////////////////////////
 
 // check if token, set in global header
