@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import './spinner.css';
+import './style.css';
 
-// @todo - move to ui along with css? or incorporate/replace with external component
+// @todo - incorporate/replace with external component?
+// @todo - styled-component over an imported stylesheet?
 
 export default () => {
 	const size = '60'; // multiples of 30

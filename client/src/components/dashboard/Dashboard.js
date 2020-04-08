@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,8 @@ import { deleteAccount } from '../../actions/auth';
 // import TaskForm from '../tasks/TaskForm';
 
 import Heading from '../ui/Heading';
-import { Button, StyledLink } from '../ui/Button';
+import { Button } from '../ui/Button';
+import { StyledLink } from '../ui/Link';
 
 const Dashboard = ({ auth: { user }, deleteAccount }) => {
 	return (
@@ -22,7 +23,7 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 			</button>
 
 			{/* styled-components */}
-			<Button color="danger" onClick={() => deleteAccount()}>
+			<Button variant="danger" onClick={() => deleteAccount()}>
 				Delete my account
 			</Button>
 
@@ -33,19 +34,19 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 			<Heading level="5">Heading 5</Heading>
 			<Heading level="6">Heading 6</Heading>
 
-			<StyledLink to="/tasks" color="primary">
+			<StyledLink to="/tasks" variant="primary">
 				Testing custom Link Tasks
 			</StyledLink>
 
 			{/* styled components */}
 			<div className="">
 				<Button>Normal Button</Button>
-				<Button color="primary">Primary Button</Button>
-				<Button color="secondary">Secondary Button</Button>
-				<Button color="info">Info Button</Button>
-				<Button color="warning">Warning Button</Button>
-				<Button color="success">Success Button</Button>
-				<Button color="danger">Danger Button</Button>
+				<Button variant="primary">Primary Button</Button>
+				<Button variant="secondary">Secondary Button</Button>
+				<Button variant="info">Info Button</Button>
+				<Button variant="warning">Warning Button</Button>
+				<Button variant="success">Success Button</Button>
+				<Button variant="danger">Danger Button</Button>
 			</div>
 			{/* /styled components */}
 		</Fragment>

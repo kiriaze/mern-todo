@@ -1,11 +1,9 @@
-import { css } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
 	// note: or consider a utility like https://github.com/mg901/styled-breakpoints
+	// or different naming convention; e.g. tablet, desktop..
 	breakpoints: {
-		// tablet: '76.8rem',
-		// desktop: '92rem'
 		tiny: '32rem',
 		small: '48rem',
 		medium: '76.8rem',
@@ -17,19 +15,14 @@ export const theme = {
 	fontSizes: {
 		base: '10px',
 		body: '1.6rem'
-		// h1: '4rem', // idk, maybe set within globalStyles, or within component?
+		// only list base font sizes rather than all typography (e.g. h1-h6, ul, etc.)
+		// keep those within their respective components, or in globalStyles?
+		// h1: '4rem',
 		// h2: {
 		// 	tiny: '2rem',
 		// 	medium: '3rem'
 		// }
 	},
-
-	// // idk...
-	// spaces: {
-	// 	small: '4rem',
-	// 	medium: '8rem',
-	// 	large: '16rem'
-	// },
 
 	fonts: {
 		body: 'Open Sans, sans-serif',
@@ -127,7 +120,7 @@ export const theme = {
 	// },
 };
 
-// testing css vars; testing naming convention and matching theme defined styles above
+// css vars; naming convention and matching theme defined styles above
 const renderCssVars = theme => {
 	let rootVars = '';
 
@@ -177,8 +170,7 @@ export const GlobalStyle = createGlobalStyle`
 	button {
 		outline: 0;
 	}
-	
-	//
+	// end resets
 	
 	:root {
 		// - why are duplicate styles being rendered in inspector?
@@ -211,6 +203,9 @@ export const GlobalStyle = createGlobalStyle`
 		font-family: ${theme.fonts.body};
 		font-size: ${theme.fontSizes.body};
 	}
+
+
+
 
 
 	// should this also contain other base/typography styles; e.g. headings?

@@ -8,7 +8,7 @@ import { Button } from '../ui/Button';
 
 // which is better? more sustainable? cleaner? simpler? more effecient? quicker to proto? better maintained in larger teams?
 // // import './taskItem.css';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const StyledItem = styled.div`
 	margin: 1rem auto 0;
@@ -65,7 +65,7 @@ const TaskItem = ({
 						// 	Delete Task
 						// </button>
 						<Button
-							color="danger"
+							variant="danger"
 							onClick={e => {
 								if (window.confirm('Are you sure?')) {
 									deleteTask(_id);

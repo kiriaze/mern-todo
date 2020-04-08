@@ -11,6 +11,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // Define Routes
+// app.use(require('./routes/index')); // abstract routes into its own file export
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/tasks', require('./routes/api/tasks'));

@@ -1,12 +1,12 @@
-# MERN-TODO
+# MERNDO
 
 ## Requirements
 
--   [MongoDb/Atlas](https://cloud.mongodb.com/)
--   [Express](https://expressjs.com/)
--   [React.js](https://reactjs.org/)
--   [Node.js](http://nodejs.org/)
--   [Heroku](https://heroku.com/)
+- [MongoDb/Atlas](https://cloud.mongodb.com/)
+- [Express](https://expressjs.com/)
+- [React.js](https://reactjs.org/)
+- [Node.js](http://nodejs.org/)
+- [Heroku](https://heroku.com/)
 
 ## Installation Steps
 
@@ -19,7 +19,7 @@
 
 ### Notes
 
--   A todo app built ontop of the MERN stack, with user accounts / authentication, and deployment to Heroku.
+- A todo app built ontop of the MERN stack, with user accounts / authentication, and deployment to Heroku.
 
 ---
 
