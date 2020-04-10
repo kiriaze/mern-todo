@@ -1,5 +1,9 @@
+import React from 'react'; // if we're not using SC and exporting our own custom component
+
 import styled, { css } from 'styled-components';
 import { darken } from 'polished';
+
+import './style.scss'; // if no SC
 
 // Despite both Link and Button currently sharing the same styles, they could and most likely will have their own unique styles, thus they're housed separately from the get-go. 'a'(nchor) tags would most likely live within ../Link.
 
@@ -26,10 +30,12 @@ import { darken } from 'polished';
 // };
 
 export const buttonStyle = css`
+	font-size: 1.5rem;
+	line-height: 4rem;
 	display: inline-block;
 	border-radius: 0.3rem;
-	padding: 0.8rem 2rem;
-	margin: 0.5rem 1rem;
+	padding: 0 2rem;
+	// margin: 0.5rem 1rem;
 	cursor: pointer;
 	transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out;
 
@@ -55,17 +61,22 @@ export const buttonStyle = css`
 		`}
 `;
 
-// // e.g. to override any specific button, add this after the rule above - albeit, the ${variantStyles} method is cleaner
-// ${props =>
-// 	props.variant === 'warning' &&
-// 	css`
-// 		color: black;
-// 		background-color: yellow;
-// 		&:hover {
-// 			background-color: ${darken(0.05, 'yellow')};
-// 		}
-// 	`}
+// // // e.g. to override any specific button, add this after the rule above - albeit, the ${variantStyles} method is cleaner
+// // ${props =>
+// // 	props.variant === 'warning' &&
+// // 	css`
+// // 		color: black;
+// // 		background-color: yellow;
+// // 		&:hover {
+// // 			background-color: ${darken(0.05, 'yellow')};
+// // 		}
+// // 	`}
 
-export const Button = styled.button`
-	${buttonStyle}
-`;
+// // export const Button = styled.button`
+// // 	${buttonStyle}
+// // `;
+
+// non styled-component
+export const Button = ({ variant, ...rest }) => {
+	return <button className={`btn btn--${variant}`} {...rest} />;
+};

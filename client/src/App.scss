@@ -1,0 +1,130 @@
+/* should these be in our GlobalStyle in root rather, instead of splitting styles between css and js? either way, keep it consistent, otherwise its a shit show */
+/**,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-size: 10px;
+}
+body {
+	line-height: 1.5;
+	font-size: 1.6rem;
+}*/
+/* /reset */
+
+// consolidate at some point
+
+#root {
+	display: flex;
+	flex-flow: column;
+	min-height: 100vh;
+}
+
+// the middle content between header/footer
+.root-inner {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	> * {
+		width: 100%;
+	}
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 2rem;
+	max-width: var(--theme-breakpoints-xlarge);
+}
+
+// i.e. header
+.navbar {
+	line-height: 10rem;
+	background-color: lavender;
+	.container {
+		display: flex;
+		justify-content: space-between;
+	}
+	ul {
+		display: flex;
+		list-style: none;
+		li {
+			& + li {
+				margin-left: 2rem;
+			}
+		}
+	}
+}
+
+.footer {
+	padding: 4rem 0;
+	background-color: wheat;
+	ul {
+		display: flex;
+		list-style: none;
+		justify-content: flex-end;
+		li + li {
+			margin-left: 2rem;
+		}
+	}
+}
+
+.hero {
+	padding: 20rem 0;
+	text-align: center;
+	background-color: whitesmoke;
+	.user-actions {
+		margin-top: 5rem;
+	}
+}
+
+.lead {
+	font-size: 1.8rem;
+	margin-bottom: 1.6rem;
+}
+
+.form-wrapper {
+	width: 100%;
+	margin: auto;
+	padding: 4rem 5rem;
+	max-width: 40rem;
+	border-radius: 0.75rem;
+	border: 0.1rem solid var(--theme-colors-baseLight);
+	box-shadow: 0rem 1rem 1rem var(--theme-colors-baseLight);
+	.form-footer {
+		margin-top: 2rem;
+	}
+}
+
+.form {
+}
+
+.form-group {
+	margin-bottom: 2rem;
+	input,
+	textarea {
+		width: 100%;
+		resize: none;
+		padding: 0.75rem 1rem;
+		border: 0.1rem solid var(--theme-colors-brandDivider);
+		&:focus {
+			outline: 0;
+		}
+	}
+	input {
+	}
+	textarea {
+	}
+}
+
+.user-actions {
+	* + * {
+		margin-left: 2rem;
+	}
+}

@@ -12,43 +12,23 @@ import { StyledLink } from '../ui/Link';
 const Dashboard = ({ auth: { user }, deleteAccount }) => {
 	return (
 		<Fragment>
-			<h1 className="">Dashboard</h1>
-			<p className="lead">Welcome {user && user.name} </p>
-			<Link to="/tasks">View Tasks</Link>
-			<Link to="/add-task">Add Task</Link>
-
-			{/* classical class styling */}
-			<button onClick={() => deleteAccount()} className="btn btn-danger">
-				Delete my account
-			</button>
-
-			{/* styled-components */}
-			<Button variant="danger" onClick={() => deleteAccount()}>
-				Delete my account
-			</Button>
-
-			<Heading>Heading 1</Heading>
-			<Heading level="2">Heading 2</Heading>
-			<Heading level="3">Heading 3</Heading>
-			<Heading level="4">Heading 4</Heading>
-			<Heading level="5">Heading 5</Heading>
-			<Heading level="6">Heading 6</Heading>
-
-			<StyledLink to="/tasks" variant="primary">
-				Testing custom Link Tasks
-			</StyledLink>
-
-			{/* styled components */}
-			<div className="">
-				<Button>Normal Button</Button>
-				<Button variant="primary">Primary Button</Button>
-				<Button variant="secondary">Secondary Button</Button>
-				<Button variant="info">Info Button</Button>
-				<Button variant="warning">Warning Button</Button>
-				<Button variant="success">Success Button</Button>
-				<Button variant="danger">Danger Button</Button>
+			<Heading level="1">Dashboard</Heading>
+			<p className="lead">Welcome {user && user.name}</p>
+			<div className="user-actions">
+				<Link className="btn btn--info" to="/tasks">
+					View Tasks
+				</Link>
+				{/* styled-component version */}
+				<StyledLink to="/tasks" variant="info">
+					View tasks
+				</StyledLink>
+				<StyledLink to="/add-task" variant="primary">
+					Add Task
+				</StyledLink>
+				<Button variant="danger" onClick={() => deleteAccount()}>
+					Delete my account
+				</Button>
 			</div>
-			{/* /styled components */}
 		</Fragment>
 	);
 };

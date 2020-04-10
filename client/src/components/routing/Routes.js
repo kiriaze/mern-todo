@@ -13,7 +13,7 @@ import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = () => {
 	return (
-		<div className="">
+		<div className="root-inner">
 			<Alert />
 			<Switch>
 				<Route exact path="/register" component={Register} />

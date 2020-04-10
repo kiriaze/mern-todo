@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addTask } from '../../actions/task';
 
+import './taskForm.scss';
+
+import { Button } from '../ui/Button';
+
 // @todo - replace with an external form component or add styles, etc..
 
 const initialState = {
@@ -60,22 +64,23 @@ const TaskForm = ({ addTask }) => {
 					/>
 				</div>
 
-				<textarea
-					name="description"
-					cols="30"
-					rows="5"
-					placeholder="Comment on this post"
-					required
-					value={description}
-					onChange={e => onChange(e)}
-				></textarea>
+				<div className="form-group">
+					<textarea
+						name="description"
+						rows="5"
+						placeholder="Comment on this post"
+						required
+						value={description}
+						onChange={e => onChange(e)}
+					></textarea>
+				</div>
 
 				<div className="form-group">
 					<input
 						type="text"
 						placeholder="Assigned To"
 						name="assignedTo"
-						value={assignedTo}
+						value={assignedTo || ''}
 						onChange={e => onChange(e)}
 					/>
 				</div>
@@ -85,7 +90,7 @@ const TaskForm = ({ addTask }) => {
 						type="text"
 						placeholder="Project ID"
 						name="project"
-						value={project}
+						value={project || ''}
 						onChange={e => onChange(e)}
 					/>
 				</div>
@@ -139,8 +144,7 @@ const TaskForm = ({ addTask }) => {
 						onChange={e => onChange(e)}
 					/>
 				</div>
-
-				<input type="submit" className="btn" value="Submit" />
+				<Button type="submit">Submit</Button>
 			</form>
 		</div>
 	);

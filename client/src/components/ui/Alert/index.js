@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import './style.scss';
+
 // @todo
 // - either add styling, or incorporate an external component like toasters/alerts/dialogs/notifcations
 // - move to ui
@@ -10,7 +12,7 @@ const Alert = ({ alerts }) =>
 	alerts !== null &&
 	alerts.length > 0 &&
 	alerts.map(alert => (
-		<div key={alert.id} className={`alert alert-${alert.alertType}`}>
+		<div key={alert.id} className={`alert alert--${alert.alertType}`}>
 			{alert.msg}
 		</div>
 	));

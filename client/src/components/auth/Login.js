@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../actions/auth';
 
+import Heading from '../ui/Heading';
+import { Button } from '../ui/Button';
+
 const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		email: '',
@@ -30,33 +33,38 @@ const Login = ({ login, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<h1 className="">Log In</h1>
-			<p className="lead">Log into your account</p>
-			<form className="" onSubmit={e => onSubmit(e)}>
-				<div className="form-group">
-					<input
-						type="email"
-						name="email"
-						placeholder="Email Address"
-						value={email}
-						onChange={e => onChange(e)}
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="password"
-						name="password"
-						placeholder="Password"
-						minLength="6"
-						value={password}
-						onChange={e => onChange(e)}
-					/>
-				</div>
-				<input type="submit" className="btn" value="Submit" />
-			</form>
-			<p className="">
-				Don't have an account? <Link to="/register">Register</Link>
-			</p>
+			<div className="form-wrapper">
+				<Heading level="1">Log In</Heading>
+				<p className="lead">Log into your account</p>
+				<form className="" onSubmit={e => onSubmit(e)}>
+					<div className="form-group">
+						<input
+							type="email"
+							name="email"
+							placeholder="Email Address"
+							value={email}
+							onChange={e => onChange(e)}
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="password"
+							name="password"
+							placeholder="Password"
+							minLength="6"
+							value={password}
+							onChange={e => onChange(e)}
+						/>
+					</div>
+					{/*<input type="submit" className="btn" value="Submit" />*/}
+					<Button type="submit" variant="success">
+						Login
+					</Button>
+				</form>
+				<p className="form-footer">
+					Don't have an account? <Link to="/register">Register</Link>
+				</p>
+			</div>
 		</Fragment>
 	);
 };

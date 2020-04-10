@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 
 // which is better? more sustainable? cleaner? simpler? more effecient? quicker to proto? better maintained in larger teams?
-// // import './taskItem.css';
+// // import './taskItem.scss';
 import styled from 'styled-components';
 
 const StyledItem = styled.div`

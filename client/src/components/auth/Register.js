@@ -5,6 +5,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
+import Heading from '../ui/Heading';
+import { Button } from '../ui/Button';
+
 const Register = ({ setAlert, register, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		name: '',
@@ -37,50 +40,55 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 	return (
 		<Fragment>
-			<h1 className="">Sign Up</h1>
-			<p className="lead">Create your account</p>
-			<form className="" onSubmit={e => onSubmit(e)}>
-				<div className="form-group">
-					<input
-						type="text"
-						placeholder="Frank Reynolds"
-						name="name"
-						value={name}
-						onChange={e => onChange(e)}
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="email"
-						placeholder="frank@reynolds.com"
-						name="email"
-						value={email}
-						onChange={e => onChange(e)}
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="password"
-						placeholder="*******"
-						name="password"
-						value={password}
-						onChange={e => onChange(e)}
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="password2"
-						placeholder="*******"
-						name="password2"
-						value={password2}
-						onChange={e => onChange(e)}
-					/>
-				</div>
-				<input type="submit" className="btn" value="Register" />
-			</form>
-			<p className="">
-				Already have an account? <Link to="/login">Sign In</Link>
-			</p>
+			<div className="form-wrapper">
+				<Heading level="1">Sign Up</Heading>
+				<p className="lead">Create your account</p>
+				<form className="" onSubmit={e => onSubmit(e)}>
+					<div className="form-group">
+						<input
+							type="text"
+							placeholder="Frank Reynolds"
+							name="name"
+							value={name}
+							onChange={e => onChange(e)}
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="email"
+							placeholder="frank@reynolds.com"
+							name="email"
+							value={email}
+							onChange={e => onChange(e)}
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="password"
+							placeholder="*******"
+							name="password"
+							value={password}
+							onChange={e => onChange(e)}
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="password2"
+							placeholder="*******"
+							name="password2"
+							value={password2}
+							onChange={e => onChange(e)}
+						/>
+					</div>
+					{/*<input type="submit" className="btn" value="Register" />*/}
+					<Button type="submit" variant="primary">
+						Register
+					</Button>
+				</form>
+				<p className="form-footer">
+					Already have an account? <Link to="/login">Sign In</Link>
+				</p>
+			</div>
 		</Fragment>
 	);
 };

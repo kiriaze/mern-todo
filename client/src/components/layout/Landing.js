@@ -3,20 +3,37 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { StyledLink } from '../ui/Link';
+
 const Landing = ({ isAuthenticated }) => {
 	if (isAuthenticated) {
 		return <Redirect to="/dashboard" />;
 	} else {
 		return (
-			<section className="landing">
-				<h1 className="">Welcome to MernDo!</h1>
-				<Link to="/register" className="">
-					Sign Up
-				</Link>
-				<Link to="/login" className="">
-					Login
-				</Link>
-			</section>
+			<div className="root-inner landing">
+				<section className="hero">
+					<div className="container">
+						<h2>Meet merndo 👋</h2>
+						<h1 className="">
+							A smart little project <br />
+							management tool
+						</h1>
+						<div className="user-actions">
+							<StyledLink to="/register" variant="success" className="">
+								Get Started!
+							</StyledLink>
+							<StyledLink to="/login" variant="primary" className="">
+								Sign in
+							</StyledLink>
+						</div>
+					</div>
+				</section>
+				<section className="">
+					<div className="container">
+						<h2>Hello, world.</h2>
+					</div>
+				</section>
+			</div>
 		);
 	}
 };

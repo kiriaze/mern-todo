@@ -208,7 +208,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
 
-	// should this also contain other base/typography styles; e.g. headings?
+	// should this also contain other base/typography styles; e.g. headings, ul, idk?
 	// if we're including them here, at what point, if any, do we have styles within component?
 	h1 {
 		font-size: 2.5rem;

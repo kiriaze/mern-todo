@@ -1,0 +1,40 @@
+// this is the scss approach vs the styled-components route
+// notes: extra code needed for variants, cant pass css variables into sass functions
+.btn {
+	font-size: 1.5rem;
+	line-height: 4rem;
+	display: inline-block;
+	border-radius: 0.3rem;
+	padding: 0 2rem;
+	cursor: pointer;
+	transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out;
+
+	// defaults
+	color: white;
+	background-color: var(--theme-colors-baseDark);
+	&:hover {
+		background-color: rgb(98, 58, 162);
+	}
+	// /defaults
+
+	// custom; e.g. variantStyles
+	&--danger {
+		background-color: var(--theme-colors-danger);
+		&:hover {
+			// cant ref the css variable within sass functions as the former are run-time variables whereas the latter are ran at compile-time, might work if the variable is a rgba val?
+			background-color: darken(red, 10%);
+		}
+	}
+	&--success {
+		background-color: var(--theme-colors-success);
+		&:hover {
+			background-color: darken(green, 10%);
+		}
+	}
+	&--info {
+		background-color: var(--theme-colors-info);
+		&:hover {
+			background-color: darken(#167fe8, 10%);
+		}
+	}
+}
