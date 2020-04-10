@@ -12,22 +12,24 @@ import { StyledLink } from '../ui/Link';
 const Dashboard = ({ auth: { user }, deleteAccount }) => {
 	return (
 		<Fragment>
-			<Heading level="1">Dashboard</Heading>
-			<p className="lead">Welcome {user && user.name}</p>
-			<div className="user-actions">
-				<Link className="btn btn--info" to="/tasks">
-					View Tasks
-				</Link>
-				{/* styled-component version */}
-				<StyledLink to="/tasks" variant="info">
-					View tasks
-				</StyledLink>
-				<StyledLink to="/add-task" variant="primary">
-					Add Task
-				</StyledLink>
-				<Button variant="danger" onClick={() => deleteAccount()}>
-					Delete my account
-				</Button>
+			<div className="container">
+				<Heading level="1">Dashboard</Heading>
+				<p className="lead">Welcome {user && user.name}</p>
+				<div className="user-actions">
+					<Link className="btn btn--info" to="/tasks">
+						View Tasks
+					</Link>
+					{/* styled-component version */}
+					<StyledLink to="/tasks" variant="info">
+						View tasks
+					</StyledLink>
+					<StyledLink to="/add-task" variant="primary">
+						Add Task
+					</StyledLink>
+					<Button variant="danger" onClick={() => deleteAccount()}>
+						Delete my account
+					</Button>
+				</div>
 			</div>
 		</Fragment>
 	);
