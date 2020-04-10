@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getTasks } from '../../actions/task';
-import Spinner from '../ui/Spinner';
+import Spinner from '../ui/spinner';
 import TaskItem from './TaskItem';
 import TaskForm from './TaskForm';
 

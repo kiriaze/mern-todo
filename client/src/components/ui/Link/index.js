@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { buttonStyle } from '../Button';
+import { buttonStyle } from '../button';
 
 // add 'a'(nchor) tag styled here if needed
 

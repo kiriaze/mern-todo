@@ -5,7 +5,7 @@ import { addTask } from '../../actions/task';
 
 import './taskForm.scss';
 
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
 // @todo - replace with an external form component or add styles, etc..
 

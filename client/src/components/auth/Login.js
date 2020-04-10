@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../actions/auth';
 
-import Heading from '../ui/Heading';
-import { Button } from '../ui/Button';
+import Heading from '../ui/heading';
+import { Button } from '../ui/button';
 
 const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({

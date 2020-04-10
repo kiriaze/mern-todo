@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { StyledLink } from '../ui/Link';
+import { StyledLink } from '../ui/link';
 
 const Landing = ({ isAuthenticated }) => {
 	if (isAuthenticated) {
