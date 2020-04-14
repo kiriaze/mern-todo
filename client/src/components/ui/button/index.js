@@ -1,33 +1,41 @@
-import React from 'react'; // if we're not using SC and exporting our own custom component
-
 import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 
-import './style.scss'; // if no SC
+// Note: Currently outputting a regular button with classes using the relative scss file. Commented out the SC version, considering which is best - also note that we could combine both by having all base styles along with modifier class styles in scss, and utilize the styled-components for state changes via props; e.g. loading?
+
+// // If we're not using Styled-Components
+// import React from 'react'; // if we're not using SC and exporting our own custom component
+// import './style.scss'; // if no SC
 
 // Despite both Link and Button currently sharing the same styles, they could and most likely will have their own unique styles, thus they're housed separately from the get-go. 'a'(nchor) tags would most likely live within ../Link.
 
-// // For more custom styles per variant, we can store styles in a custom var to inject within buttonStyle. e.g. below
-// const variantStyles = props => {
-// 	switch (props.variant) {
-// 		case 'primary':
-// 			return css`
-// 				background-color: ${props.theme.colors.primary};
-// 				&:hover {
-// 				}
-// 			`;
-// 		case 'danger':
-// 			return css`
-// 				background-color: ${props.theme.colors.danger};
-// 				&:hover {
-// 				}
-// 			`;
-// 		default:
-// 			return css`
-// 				background-color: ${props.theme.colors.baseDark};
-// 			`;
-// 	}
-// };
+// For more custom styles per variant, we can store styles in a custom var to inject within buttonStyle. e.g. below
+const variantStyles = props => {
+	switch (props.variant) {
+		case 'custom-1':
+			return css`
+				background-color: purple;
+				&:hover {
+				}
+			`;
+		case 'custom-2':
+			return css`
+				color: black;
+				background-color: yellow;
+				&:hover {
+				}
+			`;
+		default:
+			// defaults to using color's object keys if they exist
+			return css`
+				background-color: ${props.theme.colors[props.variant]};
+				&:hover {
+					background-color: ${props =>
+						props.variant && darken(0.1, props.theme.colors[props.variant])};
+				}
+			`;
+	}
+};
 
 export const buttonStyle = css`
 	font-size: 1.5rem;
@@ -48,35 +56,15 @@ export const buttonStyle = css`
 	}
 	// /defaults
 
-	// custom; e.g. variantStyles
-
-	// catch-all
-	${props =>
-		css`
-			background-color: ${props.theme.colors[props.variant]};
-			&:hover {
-				background-color: ${props =>
-					props.variant && darken(0.1, props.theme.colors[props.variant])};
-			}
-		`}
+	${variantStyles}
 `;
 
-// // // e.g. to override any specific button, add this after the rule above - albeit, the ${variantStyles} method is cleaner
-// // ${props =>
-// // 	props.variant === 'warning' &&
-// // 	css`
-// // 		color: black;
-// // 		background-color: yellow;
-// // 		&:hover {
-// // 			background-color: ${darken(0.05, 'yellow')};
-// // 		}
-// // 	`}
+// styled-component
+export const Button = styled.button`
+	${buttonStyle}
+`;
 
-// // export const Button = styled.button`
-// // 	${buttonStyle}
-// // `;
-
-// non styled-component
-export const Button = ({ variant, ...rest }) => {
-	return <button className={`btn btn--${variant}`} {...rest} />;
-};
+// // non styled-component, using rel style.scss
+// export const Button = ({ variant, ...rest }) => {
+// 	return <button className={`btn btn--${variant}`} {...rest} />;
+// };

@@ -16,12 +16,7 @@ export const theme = {
 		base: '10px',
 		body: '1.6rem'
 		// only list base font sizes rather than all typography (e.g. h1-h6, ul, etc.)
-		// keep those within their respective components, or in globalStyles?
-		// h1: '4rem',
-		// h2: {
-		// 	tiny: '2rem',
-		// 	medium: '3rem'
-		// }
+		// keep those within their respective components
 	},
 
 	fonts: {
@@ -41,7 +36,7 @@ export const theme = {
 		heading: 1.25
 	},
 
-	// which is better
+	// not using nested objects as object notation doesn't work for referencing props; i.e. colors: { brand: { primary: 'etc' } }
 	colors: {
 		primary: 'royalblue', // #33e
 		secondary: 'rgb(249, 119, 148)',
@@ -77,47 +72,6 @@ export const theme = {
 		socialPinterest: '#bd081c',
 		socialTwitter: '#1da1f2'
 	}
-
-	// // vs say this
-	// colors: {
-	// 	selection: {
-	// 		bgColor: rgba(210, 180, 140, .99),
-	// 		textColor: rgba(255, 255, 255, .99),
-	// 	},
-	// 	base: {
-	// 		white: #fff,
-	// 		light: #CEDDE2,
-	// 		medium: #8C9FA5,
-	// 		dark: #131316,
-	// 		black: #000000,
-	// 	},
-	// 	brand: {
-	// 		primary: #f06459,
-	// 		secondary: #d2b48c,
-	// 		charcoal: #1a2322,
-	// 		offwhite: #f5f5f5,
-	// 	},
-	// 	text: {
-	// 		brand: #1f1f1f
-	// 	},
-	// 	divider: {
-	// 		brand: #1f1f1f
-	// 	}
-	// 	state: {
-	// 		success: #31aa51,
-	// 		error: #F06459,
-	// 		info: 'dodgerblue',
-	// 		warning: 'burlywood',
-	// 		danger: 'red'
-	// 	},
-	// 	social: {
-	// 		facebook: #3b5998,
-	// 		instagram: #405de6,
-	// 		linkedin: #0077b5,
-	// 		pinterest: #bd081c,
-	// 		twitter: #1da1f2
-	// 	},
-	// },
 };
 
 // css vars; naming convention and matching theme defined styles above
@@ -204,22 +158,5 @@ export const GlobalStyle = createGlobalStyle`
 		font-size: ${theme.fontSizes.body};
 	}
 
-
-
-
-
-	// should this also contain other base/typography styles; e.g. headings, ul, idk?
-	// if we're including them here, at what point, if any, do we have styles within component?
-	h1 {
-		font-size: 2.5rem;
-		@media (min-width: ${theme.breakpoints.small}) {
-			font-size: 4rem;
-		}
-		@media (min-width: ${theme.breakpoints.medium}) {
-			font-size: 5rem;
-		}
-		@media (min-width: ${theme.breakpoints.large}) {
-			font-size: 6rem;
-		}
-	}
+	// all component based typography is scoped at their respective component level; i.e. ./components/ui/heading
 `;

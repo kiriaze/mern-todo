@@ -17,7 +17,7 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 
 				<Heading level="2">Test</Heading>
 
-				<Heading level="3" className="logo" variant="poop">
+				<Heading level="3" className="logo" variant="fancy">
 					Logo Heading
 				</Heading>
 
@@ -36,6 +36,10 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 					<Button variant="danger" onClick={() => deleteAccount()}>
 						Delete my account
 					</Button>
+
+					<Button variant="custom-1">Custom Button Style 1</Button>
+					<Button variant="custom-2">Custom Button Style 2</Button>
+					<Button>Default Button</Button>
 				</div>
 			</div>
 		</Fragment>
