@@ -8,18 +8,12 @@ import {
 	USER_LOADED,
 	AUTH_ERROR,
 	LOGOUT,
-	ACCOUNT_DELETED
-	// CLEAR_PROFILE
+	ACCOUNT_DELETED,
+	CLEAR_PROFILE
 } from './types';
-
-import setAuthToken from '../utils/setAuthToken';
 
 // Load User
 export const loadUser = () => async dispatch => {
-	// this will only checks the first time that the user loads, so we copy/past this in app.js as well
-	if (localStorage.token) {
-		setAuthToken(localStorage.token);
-	}
 	try {
 		const res = await axios.get('/api/auth');
 		dispatch({
@@ -100,11 +94,11 @@ export const login = ({ email, password }) => async dispatch => {
 	}
 };
 
-// Logout User
+// Logout User / Clear Profile
 export const logout = () => async dispatch => {
-	// dispatch({
-	// 	type: CLEAR_PROFILE
-	// });
+	dispatch({
+		type: CLEAR_PROFILE
+	});
 	dispatch({
 		type: LOGOUT
 	});

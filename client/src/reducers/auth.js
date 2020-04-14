@@ -1,9 +1,8 @@
-// import our action types
 import {
 	LOGIN_SUCCESS,
-	LOGIN_FAIL,
+	// LOGIN_FAIL,
 	REGISTER_SUCCESS,
-	REGISTER_FAIL,
+	// REGISTER_FAIL,
 	USER_LOADED,
 	AUTH_ERROR,
 	LOGOUT,
@@ -11,15 +10,13 @@ import {
 	ACCOUNT_DELETED
 } from '../actions/types';
 
-// setup initialState
 const initialState = {
 	token: localStorage.getItem('token'),
 	isAuthenticated: null,
-	loading: true, // true by default; once we get response we set to false
+	loading: true,
 	user: null
 };
 
-// export function passing (state,action) and switch off action types to return objects containing updated state, payload, etc.
 export default function (state = initialState, action) {
 	const { type, payload } = action;
 
@@ -27,30 +24,34 @@ export default function (state = initialState, action) {
 		case USER_LOADED:
 			return {
 				...state,
-				user: payload,
 				isAuthenticated: true,
-				loading: false
+				loading: false,
+				user: payload
+			};
+		case REGISTER_SUCCESS:
+			return {
+				...state,
+				...payload,
+				isAuthenticated: true,
+				loading: false,
+				user: payload
 			};
 		case LOGIN_SUCCESS:
-		case REGISTER_SUCCESS:
-			localStorage.setItem('token', payload.token);
 			return {
 				...state,
 				...payload,
 				isAuthenticated: true,
 				loading: false
 			};
-		case LOGOUT:
-		case AUTH_ERROR:
-		case LOGIN_FAIL:
-		case REGISTER_FAIL:
 		case ACCOUNT_DELETED:
-			localStorage.removeItem('token');
+		case AUTH_ERROR:
+		case LOGOUT:
 			return {
 				...state,
 				token: null,
 				isAuthenticated: false,
-				loading: false
+				loading: false,
+				user: null
 			};
 		default:
 			return state;

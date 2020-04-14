@@ -9,104 +9,111 @@ const sharedStyling = css`
 	font-family: ${props => props.theme.fonts.heading};
 	// font-family: 'Open Sans', sans-serif;
 	// font-family: 'Frank Ruhl Libre', serif;
+	&.logo {
+		text-decoration: underline;
+	}
 `;
 
 ///////////////////////////////////////////////
 
-// // note: i still don't really agree with global typography styles being scoped to a component, rather than say a config of some kind with theme defaults...e.g. ThemeProvider from root of app
+// note: i still don't really agree with global typography styles being scoped to a component, rather than say a config of some kind with theme defaults...e.g. ThemeProvider from root of app
 
-// @todo - consider using 'variant' over 'level' (look at ./Button), as we could have more unique variations; e.g. default heirarchy of headings with fancy script styles for h1, and different styles for h2's that are specific to a component - albeit those could be overwritten within that component.. - the thought here is that 'level' only really identifies h1-h6, and would only work if we only have one style definition per level, meaning only 6 different heading styles - which isnt always the case for projects - and rather than having multiple props; 'level variant etc.', just leave as variant?
+///////////////////////////////////////////////////////////////////////////////
+// Below is a bit better than having conditional styles depicted in prop comparisons,
+// albeit similar, this seems a bit cleaner - and allows for more logic/js if needed
+///////////////////////////////////////////////////////////////////////////////
 
-// although this way is more concise,
-// could be harder to read if each level has lots of styles
-const StyledHeading = styled.h1`
+// handleLevel styles heirarchy of h1-h6
+const handleLevel = props => {
+	switch (props.level) {
+		case '1':
+			return css`
+				font-size: 4rem;
+				color: forestgreen;
+			`;
+		case '2':
+			return css`
+				color: ${props.theme.colors.primary};
+				// font-size: 3.6rem;
 
-	${sharedStyling}
-
-	${props =>
-		// for the prop default 1 passed in
-		(props.level === 1 || props.level === '1') &&
-		css`
-			color: forestgreen;
-			// font-size: 4rem;
-		`}
-
-	${props =>
-		props.level === '2' &&
-		css`
-			color: ${props.theme.colors.primary};
-			// font-size: 3.6rem;
-
-			//
-			font-size: 2rem;
-			@media (min-width: ${props.theme.breakpoints.small}) {
+				//
+				font-size: 2rem;
+				@media (min-width: ${props.theme.breakpoints.small}) {
+					font-size: 2.4rem;
+					color: ${props.theme.colors.secondary};
+				}
+				@media (min-width: ${props.theme.breakpoints.medium}) {
+					font-size: 3rem;
+					color: ${props.theme.colors.warning};
+				}
+				@media (min-width: ${props.theme.breakpoints.large}) {
+					font-size: 3.6rem;
+					color: ${props.theme.colors.danger};
+				}
+			`;
+		case '3':
+			return css`
+				color: orange;
+				font-size: 3.2rem;
+			`;
+		case '4':
+			return css`
+				font-size: 2.8rem;
+				letter-spacing: 1rem;
+			`;
+		case '5':
+			return css`
 				font-size: 2.4rem;
-				color: ${props.theme.colors.secondary};
-			}
-			@media (min-width: ${props.theme.breakpoints.medium}) {
-				font-size: 3rem;
-				color: ${props.theme.colors.warning};
-			}
-			@media (min-width: ${props.theme.breakpoints.large}) {
-				font-size: 3.6rem;
-				color: ${props.theme.colors.danger};
-			}
-		`}
-
-	${props =>
-		props.level === '3' &&
-		css`
-			color: orange;
-			font-size: 3.2rem;
-		`}
-
-	${props =>
-		props.level === '4' &&
-		css`
-			font-size: 2.8rem;
-			letter-spacing: 1rem;
-		`}
-
-	${props =>
-		props.level === '5' &&
-		css`
-			font-size: 2.4rem;
-			text-transform: uppercase;
-		`}
-
-	${props =>
-		props.level === '6' &&
-		css`
-			font-size: 1.8rem;
-			font-weight: 100;
-		`}
-
-`;
-
-const Heading = ({ level, ...rest }) => {
-	return <StyledHeading level={level} as={`h${level}`} {...rest} />;
+				text-transform: uppercase;
+			`;
+		case '6':
+			return css`
+				font-size: 1.8rem;
+				font-weight: 100;
+			`;
+		default:
+			return '';
+	}
 };
 
-// // alternative to template literals example
-// const Heading = styled.div([], props => ({
-// 	backgroundColor: 'red',
-// 	...((props.level === 1 || props.level === '1') && {
-// 		backgroundColor: 'blue'
-// 	}),
-// 	...(props.level === '2' && {
-// 		backgroundColor: 'green'
-// 	}),
-// 	...(props.level === '3' && {
-// 		backgroundColor: 'orange'
-// 	})
-// }));
-// // /alt to template literals
+// handleVariant styles unique instances of headings
+const handleVariant = props => {
+	switch (props.variant) {
+		case 'poop':
+			return css`
+				color: purple;
+			`;
+		default:
+			return '';
+	}
+};
 
-///////////////////////////////////////////////////////
-// Below gives albeit seemingly redundant,
-// affords better readability as things are scoped separately
-// and could have them be separate imports (over abstraction, but possible)
-//////////////////////////////////////////////////////
+const StyledHeading = styled.h1`
+	${sharedStyling}
+	${props => handleLevel(props)}
+	${props => handleVariant(props)}
+`;
+
+const Heading = ({ level, variant, ...rest }) => {
+	return (
+		<StyledHeading level={level} as={`h${level}`} variant={variant} {...rest} />
+	);
+};
+
+Heading.defaultProps = {
+	level: '1'
+};
+
+export default Heading;
+//
+
+//
+
+// ///////////////////////////////////////////////////////
+// // Below gives albeit seemingly redundant,
+// // affords better readability as things are scoped separately
+// // and could have them be separate imports (over abstraction, but possible)
+// //////////////////////////////////////////////////////
 
 // const H1 = styled.h1`
 // 	${sharedStyling}
@@ -144,28 +151,32 @@ const Heading = ({ level, ...rest }) => {
 // 	color: grey;
 // `;
 
+// // or use 'variant' instead of level,
+// // and have cases for each 'variant'; e.g.
+// // h1, h2, ..., subtitle, mono, script, etc.
 // const Heading = ({ level, ...rest }) => {
 // 	switch (level) {
 // 		case '1':
-// 			return <H1 as={`h${level}`} {...rest} />;
+// 			return <H1 {...rest} />;
 // 		case '2':
-// 			return <H2 as={`h${level}`} {...rest} />;
+// 			return <H2 {...rest} />;
 // 		case '3':
-// 			return <H3 as={`h${level}`} {...rest} />;
+// 			return <H3 {...rest} />;
 // 		case '4':
-// 			return <H4 as={`h${level}`} {...rest} />;
+// 			return <H4 {...rest} />;
 // 		case '5':
-// 			return <H5 as={`h${level}`} {...rest} />;
+// 			return <H5 {...rest} />;
 // 		case '6':
-// 			return <H6 as={`h${level}`} {...rest} />;
+// 			return <H6 {...rest} />;
 // 		default:
-// 			return <H1 as={`h${level}`} {...rest} />;
+// 			return <H1 {...rest} />;
 // 	}
 // };
+
+// Heading.defaultProps = {
+// 	level: 1
+// };
+
+// export default Heading;
+
 // //
-
-Heading.defaultProps = {
-	level: 1
-};
-
-export default Heading;

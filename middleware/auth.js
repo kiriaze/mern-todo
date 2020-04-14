@@ -17,13 +17,17 @@ module.exports = (req, res, next) => {
 
 	// Verify token
 	try {
-		// decode token
-		const decoded = jwt.verify(token, config.get('jwtSecret'));
-
-		req.user = decoded.user;
-
-		next(); // cb; like we would do in any middleware
+		jwt.verify(token, config.get('jwtSecret'), (error, decoded) => {
+			if (error) {
+				res.status(401).json({ msg: 'Token is not valid' });
+			} else {
+				// decode token
+				req.user = decoded.user;
+				next(); // cb; like we would do in any middleware
+			}
+		});
 	} catch (err) {
+		console.error('something wrong with auth middleware');
 		res.status(401).json({
 			msg: 'Token is not valid'
 		});

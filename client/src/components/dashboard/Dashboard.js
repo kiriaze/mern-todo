@@ -14,6 +14,13 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 		<Fragment>
 			<div className="container">
 				<Heading level="1">Dashboard</Heading>
+
+				<Heading level="2">Test</Heading>
+
+				<Heading level="3" className="logo" variant="poop">
+					Logo Heading
+				</Heading>
+
 				<p className="lead">Welcome {user && user.name}</p>
 				<div className="user-actions">
 					<Link className="btn btn--info" to="/tasks">
