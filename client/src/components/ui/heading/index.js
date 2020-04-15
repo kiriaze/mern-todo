@@ -3,15 +3,28 @@ import React from 'react';
 // should we style headings here, or via css as base styles?
 import styled, { css } from 'styled-components';
 
+// abstract into a mq/breakpoint utility function?
+import { theme } from '../../../theme.js';
+
+// Breakpoint mixin
+// Usage:
+// ${mq('medium')} {
+// 	background: red;
+// }
+// ${mq('large', 'max', 'portrait')} {
+// }
+// note: should 'type' be 'all, print, screen, speech' instead of 'min/max'?
+// @media screen and (min-width: 30em) and (orientation: landscape)
+let mq = (size, type = 'min', orientation = 'landscape') => `
+		@media (${type}-width: ${theme.breakpoints[size]}) and (orientation: ${orientation})
+	`;
+//
+
 // h1-h6 general styling
 const sharedStyling = css`
 	display: block;
 	font-weight: 700;
 	font-family: ${props => props.theme.fonts.heading};
-	// example
-	&.logo {
-		text-decoration: underline;
-	}
 `;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,58 +38,81 @@ const handleLevel = props => {
 	switch (props.level) {
 		case '1':
 			return css`
-				// font-size: 4rem;
-				color: forestgreen;
-				font-size: 2.5rem;
-				@media (min-width: ${props.theme.breakpoints.small}) {
+				font-size: 2.6rem;
+				${mq('small')} {
 					font-size: 4rem;
 				}
-				@media (min-width: ${props.theme.breakpoints.medium}) {
+				${mq('medium')} {
 					font-size: 5rem;
 				}
-				@media (min-width: ${props.theme.breakpoints.large}) {
+				${mq('large')} {
 					font-size: 6rem;
 				}
 			`;
 		case '2':
 			return css`
-				color: ${props.theme.colors.primary};
-				// font-size: 3.6rem;
-
-				//
-				font-size: 2rem;
-				@media (min-width: ${props.theme.breakpoints.small}) {
+				font-size: 2.3rem;
+				${mq('small')} {
 					font-size: 2.4rem;
-					color: ${props.theme.colors.secondary};
 				}
-				@media (min-width: ${props.theme.breakpoints.medium}) {
-					font-size: 3rem;
-					color: ${props.theme.colors.warning};
+				${mq('medium')} {
+					font-size: 4.2rem;
 				}
-				@media (min-width: ${props.theme.breakpoints.large}) {
-					font-size: 3.6rem;
-					color: ${props.theme.colors.danger};
+				${mq('large')} {
+					font-size: 4.8rem;
 				}
 			`;
 		case '3':
 			return css`
-				color: orange;
-				font-size: 3.2rem;
+				font-size: 2.1rem;
+				${mq('small')} {
+					font-size: 2.4rem;
+				}
+				${mq('medium')} {
+					font-size: 3.4rem;
+				}
+				${mq('large')} {
+					font-size: 3.8rem;
+				}
 			`;
 		case '4':
 			return css`
-				font-size: 2.8rem;
-				letter-spacing: 1rem;
+				font-size: 1.9rem;
+				${mq('small')} {
+					font-size: 2.2rem;
+				}
+				${mq('medium')} {
+					font-size: 2.8rem;
+				}
+				${mq('large')} {
+					font-size: 3.2rem;
+				}
 			`;
 		case '5':
 			return css`
-				font-size: 2.4rem;
-				text-transform: uppercase;
+				font-size: 1.7rem;
+				${mq('small')} {
+					font-size: 2rem;
+				}
+				${mq('medium')} {
+					font-size: 2.4rem;
+				}
+				${mq('large')} {
+					font-size: 2.6rem;
+				}
 			`;
 		case '6':
 			return css`
-				font-size: 1.8rem;
-				font-weight: 100;
+				font-size: 1.5rem;
+				${mq('small')} {
+					font-size: 1.6rem;
+				}
+				${mq('medium')} {
+					font-size: 1.8rem;
+				}
+				${mq('large')} {
+					font-size: 1.9rem;
+				}
 			`;
 		default:
 			return '';

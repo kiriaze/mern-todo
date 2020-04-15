@@ -15,13 +15,15 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 			<div className="container">
 				<Heading level="1">Dashboard</Heading>
 
-				<Heading level="2">Test</Heading>
+				<Heading level="1">Heading 1</Heading>
+				<Heading level="2">Heading 2</Heading>
+				<Heading level="3">Heading 3</Heading>
+				<Heading level="4">Heading 4</Heading>
+				<Heading level="5">Heading 5</Heading>
+				<Heading level="6">Heading 6</Heading>
 
-				<Heading level="3" className="logo" variant="fancy">
-					Logo Heading
-				</Heading>
+				<p className="lead">Welcome back, {user && user.name.split(' ')[0]}!</p>
 
-				<p className="lead">Welcome {user && user.name}</p>
 				<div className="user-actions">
 					<Link className="btn btn--info" to="/tasks">
 						View Tasks
@@ -41,6 +43,13 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 					<Button variant="custom-2">Custom Button Style 2</Button>
 					<Button>Default Button</Button>
 				</div>
+
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt
+					quaerat eos quia dolor voluptatem similique, voluptates, possimus
+					placeat consectetur iusto, optio esse. Provident, voluptatem quibusdam
+					inventore dolores quod ea reiciendis.
+				</p>
 			</div>
 		</Fragment>
 	);

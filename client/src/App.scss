@@ -1,22 +1,4 @@
 /* should these be in our GlobalStyle in root rather, instead of splitting styles between css and js? either way, keep it consistent, otherwise its a shit show */
-/**,
-*:before,
-*:after {
-	box-sizing: border-box;
-}
-* {
-	margin: 0;
-	padding: 0;
-}
-html {
-	font-size: 10px;
-}
-body {
-	line-height: 1.5;
-	font-size: 1.6rem;
-}*/
-/* /reset */
-
 // consolidate at some point
 
 #root {
@@ -36,11 +18,38 @@ body {
 	}
 }
 
+// should this be moved to theme.js?
+p {
+	margin: 2.4rem 0;
+	// line-height: 2.4rem;
+}
+
 .container {
 	width: 100%;
 	margin: 0 auto;
 	padding: 0 2rem;
 	max-width: var(--theme-breakpoints-xlarge);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	.col {
+		flex-basis: 100%;
+		@media screen and (min-width: 780px) {
+			flex: 1;
+			&--25 {
+				flex: 2.5;
+			}
+			&--55 {
+				flex: 5.5;
+			}
+			&--20 {
+				flex: 2;
+			}
+		}
+	}
 }
 
 // i.e. header
@@ -87,6 +96,13 @@ body {
 .lead {
 	font-size: 1.8rem;
 	margin-bottom: 1.6rem;
+}
+
+.landing {
+	.hero {
+		text-align: left;
+		background: rgb(255, 247, 89);
+	}
 }
 
 .form-wrapper {

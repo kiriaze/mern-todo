@@ -4,13 +4,13 @@ export const theme = {
 	// note: or consider a utility like https://github.com/mg901/styled-breakpoints
 	// or different naming convention; e.g. tablet, desktop..
 	breakpoints: {
-		tiny: '32rem',
-		small: '48rem',
-		medium: '76.8rem',
-		large: '102.4rem',
-		xlarge: '128rem',
-		xxlarge: '144rem',
-		xxxlarge: '192rem'
+		tiny: '320px',
+		small: '480px',
+		medium: '768px',
+		large: '1024px',
+		xlarge: '1280px',
+		xxlarge: '1440px',
+		xxxlarge: '1920px'
 	},
 	fontSizes: {
 		base: '10px',
@@ -20,8 +20,8 @@ export const theme = {
 	},
 
 	fonts: {
-		body: 'Open Sans, sans-serif',
-		heading: 'Frank Ruhl Libre, serif',
+		body: 'Helvetica Neue, Open Sans, sans-serif',
+		heading: 'Helvetica Neue, Frank Ruhl Libre, serif',
 		monospace: 'Menlo, monospace'
 	},
 
