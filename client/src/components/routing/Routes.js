@@ -9,6 +9,7 @@ import Tasks from '../tasks/Tasks';
 import Task from '../task/Task';
 import TaskForm from '../tasks/TaskForm';
 import NotFound from '../layout/NotFound';
+import Styleguide from '../layout/Styleguide';
 import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = () => {
@@ -22,6 +23,7 @@ const Routes = () => {
 				<PrivateRoute exact path="/tasks" component={Tasks} />
 				<PrivateRoute exact path="/tasks/:id" component={Task} />
 				<PrivateRoute exact path="/add-task" component={TaskForm} />
+				<Route exact path="/styleguide" component={Styleguide} />
 				<Route component={NotFound} />
 			</Switch>
 		</div>

@@ -1,13 +1,11 @@
 import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 
-// Note: Currently outputting a regular button with classes using the relative scss file. Commented out the SC version, considering which is best - also note that we could combine both by having all base styles along with modifier class styles in scss, and utilize the styled-components for state changes via props; e.g. loading?
+// Note: We could combine both (classes/scss and SC) by having all base styles along with modifier class styles in scss, and utilize the styled-components for state changes via props; e.g. loading?
 
 // // If we're not using Styled-Components
 // import React from 'react'; // if we're not using SC and exporting our own custom component
 // import './style.scss'; // if no SC
-
-// Despite both Link and Button currently sharing the same styles, they could and most likely will have their own unique styles, thus they're housed separately from the get-go. 'a'(nchor) tags would most likely live within ../Link.
 
 // For more custom styles per variant, we can store styles in a custom var to inject within buttonStyle. e.g. below
 const variantStyles = props => {
