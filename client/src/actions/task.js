@@ -64,6 +64,10 @@ export const addTask = formData => async dispatch => {
 		});
 		dispatch(setAlert('Task created!', 'success'));
 	} catch (err) {
+		const errors = err.response.data.errors;
+		if (errors) {
+			errors.map(error => dispatch(setAlert(error.msg, 'danger')));
+		}
 		dispatch({
 			type: TASK_ERROR,
 			payload: {

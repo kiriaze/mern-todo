@@ -41,13 +41,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 	return (
 		<Fragment>
 			<div className="form-wrapper">
-				<Heading level="1">Sign Up</Heading>
+				<Heading level="3">Sign Up</Heading>
 				<p className="lead">Create your account</p>
-				<form className="" onSubmit={e => onSubmit(e)}>
+				<form className="form" onSubmit={e => onSubmit(e)}>
 					<div className="form-group">
 						<input
 							type="text"
 							placeholder="Frank Reynolds"
+							placeholder="Full Name"
 							name="name"
 							value={name}
 							onChange={e => onChange(e)}
@@ -57,6 +58,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 						<input
 							type="email"
 							placeholder="frank@reynolds.com"
+							placeholder="Email Address"
 							name="email"
 							value={email}
 							onChange={e => onChange(e)}
@@ -65,7 +67,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 					<div className="form-group">
 						<input
 							type="password"
-							placeholder="*******"
+							placeholder="Password"
 							name="password"
 							value={password}
 							onChange={e => onChange(e)}
@@ -74,13 +76,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 					<div className="form-group">
 						<input
 							type="password"
-							placeholder="*******"
+							placeholder="Confirm Password"
 							name="password2"
 							value={password2}
 							onChange={e => onChange(e)}
 						/>
 					</div>
-					{/*<input type="submit" className="btn" value="Register" />*/}
 					<Button type="submit" variant="primary">
 						Register
 					</Button>

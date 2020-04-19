@@ -7,20 +7,91 @@ import { darken } from 'polished';
 // import React from 'react'; // if we're not using SC and exporting our own custom component
 // import './style.scss'; // if no SC
 
+//
+const gradientStyles = css`
+	z-index: 1;
+	&:before {
+		position: absolute;
+		content: '';
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		opacity: 0;
+		z-index: -1;
+		border-radius: 0.3rem;
+		transition: opacity 0.5s linear;
+	}
+	&:hover {
+		&:before {
+			opacity: 1;
+		}
+	}
+`;
+
 // For more custom styles per variant, we can store styles in a custom var to inject within buttonStyle. e.g. below
 const variantStyles = props => {
 	switch (props.variant) {
 		case 'custom-1':
 			return css`
-				background-color: purple;
+				position: relative;
+				background: linear-gradient(65deg, #ff4d79, #ff809f);
+				transition: all 0.35s ease;
+
+				// gradient transition
+				${gradientStyles}
+				&:before {
+					background: linear-gradient(65deg, #ff809f, #ff4d79);
+				}
+
+				&:after {
+					content: '';
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					box-shadow: 0 0.8rem 1.6rem rgba(29, 43, 76, 0.12);
+					mix-blend-mode: multiply;
+					transition: box-shadow 0.35s ease;
+				}
+
 				&:hover {
+					&:after {
+						box-shadow: 0 0.8rem 1.6rem rgba(255, 77, 121, 0.25);
+					}
 				}
 			`;
 		case 'custom-2':
 			return css`
-				color: black;
-				background-color: yellow;
+				color: white;
+				position: relative;
+				background: linear-gradient(65deg, #0081f6, #44a6ff);
+				transition: all 0.35s ease;
+
+				// gradient transition
+				${gradientStyles}
+				&:before {
+					background: linear-gradient(65deg, #49a8ff, #0084fb);
+				}
+
+				&:after {
+					content: '';
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					box-shadow: 0 0.8rem 1.6rem rgba(0, 129, 246, 0.25);
+					mix-blend-mode: multiply;
+					transition: box-shadow 0.35s ease;
+				}
+
 				&:hover {
+					color: white;
+					&:after {
+						box-shadow: 0 0.8rem 1.6rem rgba(0, 129, 246, 0.4);
+					}
 				}
 			`;
 		default:

@@ -9,7 +9,7 @@ import Tasks from '../tasks/Tasks';
 import Task from '../task/Task';
 import TaskForm from '../tasks/TaskForm';
 import NotFound from '../layout/NotFound';
-import Styleguide from '../layout/Styleguide';
+import Styleguide from '../pages/Styleguide'; // starting to map out pages instead of having these within components
 import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = () => {

@@ -43,11 +43,12 @@ const TaskForm = ({ addTask }) => {
 		});
 	};
 
-	const onSubmit = e => {
+	const onSubmit = async e => {
 		e.preventDefault();
 		addTask({ ...formData });
 		setFormData(initialState); // clear form
 	};
+
 	return (
 		<div className="post-form">
 			<div className="">
@@ -69,7 +70,6 @@ const TaskForm = ({ addTask }) => {
 						name="description"
 						rows="5"
 						placeholder="Comment on this post"
-						required
 						value={description}
 						onChange={e => onChange(e)}
 					></textarea>

@@ -11,12 +11,13 @@ import { Button } from '../ui/button';
 import styled from 'styled-components';
 
 const StyledItem = styled.div`
-	margin: 1rem auto 0;
-	max-width: 40rem;
+	margin: 0 0 1rem;
+	// max-width: 40rem;
 	padding: 2rem 3rem;
-	background-color: #f5f5f5;
+	background-color: #fff;
+	border: 0.1rem solid #eee;
 	&:first-child {
-		margin-top: 0;
+		// margin-top: 0;
 	}
 `;
 //

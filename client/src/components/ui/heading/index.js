@@ -7,6 +7,7 @@ import mq from '../../../utils/mq';
 // h1-h6 general styling
 const sharedStyling = css`
 	display: block;
+	// line-height: 1;
 	font-weight: 700;
 	font-family: ${props => props.theme.fonts.heading};
 `;
@@ -109,6 +110,11 @@ const handleVariant = props => {
 		case 'fancy':
 			return css`
 				color: purple;
+			`;
+		case 'sg-heading':
+			return css`
+				margin-bottom: 2rem;
+				text-decoration: underline;
 			`;
 		default:
 			return '';

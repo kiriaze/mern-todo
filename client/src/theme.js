@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
-	// note: or consider a utility like https://github.com/mg901/styled-breakpoints
-	// or different naming convention; e.g. tablet, desktop..
 	breakpoints: {
 		tiny: '320px',
 		small: '480px',
@@ -12,6 +10,7 @@ export const theme = {
 		xxlarge: '1440px',
 		xxxlarge: '1920px'
 	},
+
 	fontSizes: {
 		base: '10px',
 		body: '1.6rem'
@@ -20,15 +19,15 @@ export const theme = {
 	},
 
 	fonts: {
-		body: 'Helvetica Neue, Open Sans, sans-serif',
-		heading: 'Helvetica Neue, Frank Ruhl Libre, serif',
+		body: 'HKGroteskPro, Open Sans, sans-serif',
+		heading: 'HKGroteskPro, serif',
 		monospace: 'Menlo, monospace'
 	},
 
 	fontWeights: {
 		body: 400,
-		heading: 700,
-		bold: 700
+		heading: 600,
+		bold: 600
 	},
 
 	lineHeights: {
@@ -45,7 +44,6 @@ export const theme = {
 		warning: 'burlywood',
 		danger: 'red',
 
-		//
 		selectionBgColor: 'rgba(210, 180, 140, .99)',
 		selectionTextColor: 'rgba(255, 255, 255, .99)',
 
@@ -55,7 +53,7 @@ export const theme = {
 		baseDark: '#131316',
 		baseBlack: '#000000',
 
-		brandOffwhite: '#f5f5f5',
+		brandOffwhite: '#f9fbfd',
 		brandPrimary: '#f06459',
 		brandSecondary: '#d2b48c',
 		brandCharcoal: '#1a2322',
@@ -150,7 +148,7 @@ export const GlobalStyle = createGlobalStyle`
 	
 	body {
 		color: var(--theme-colors-text, #000); // defaults if no var
-		// background-color: var(--theme-colors-baseDark);
+		background-color: var(--theme-colors-brandOffwhite);
 		//
 
 		line-height: 1.5;

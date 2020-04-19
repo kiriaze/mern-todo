@@ -3,6 +3,7 @@ import { SET_ALERT, REMOVE_ALERT } from './types';
 
 export const setAlert = (msg, alertType, timeout = 5000) => dispatch => {
 	const id = uuidv4();
+
 	dispatch({
 		type: SET_ALERT,
 		payload: {
@@ -11,12 +12,21 @@ export const setAlert = (msg, alertType, timeout = 5000) => dispatch => {
 			id
 		}
 	});
+	// // timeouts only for the non toaster
+	// setTimeout(
+	// 	() =>
+	// 		dispatch({
+	// 			type: REMOVE_ALERT,
+	// 			payload: id
+	// 		}),
+	// 	timeout
+	// );
 	setTimeout(
 		() =>
 			dispatch({
 				type: REMOVE_ALERT,
 				payload: id
 			}),
-		timeout
+		0
 	);
 };

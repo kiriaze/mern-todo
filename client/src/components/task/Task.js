@@ -8,6 +8,9 @@ import TaskItem from '../tasks/TaskItem';
 // import CommentForm from './CommentForm';
 // import CommentItem from './CommentItem';
 
+import Heading from '../ui/heading';
+import { StyledLink } from '../ui/link';
+
 const Task = ({ getTask, task: { task, loading }, match }) => {
 	useEffect(() => {
 		getTask(match.params.id);
@@ -16,17 +19,23 @@ const Task = ({ getTask, task: { task, loading }, match }) => {
 		<Spinner />
 	) : (
 		<Fragment>
-			<Link to="/tasks" className="btn">
-				Back to tasks
-			</Link>
-			<TaskItem task={task} showActions={false} />
-			{/*<CommentForm taskId={task._id} />*/}
-			<div className="comments">
-				{
-					// task.comments.map(comment => (
-					// <CommentItem key={comment._id} comment={comment} taskId={task._id} />
-					// ))
-				}
+			<div className="container">
+				{/*<Heading level="1">Tasks</Heading>*/}
+				{/*<p className="lead">Here's whats going on..</p>*/}
+				<div className="user-actions">
+					<StyledLink to="/tasks" variant="info">
+						Back to tasks
+					</StyledLink>
+				</div>
+				<TaskItem task={task} showActions={false} />
+				{/*<CommentForm taskId={task._id} />*/}
+				<div className="comments">
+					{
+						// task.comments.map(comment => (
+						// <CommentItem key={comment._id} comment={comment} taskId={task._id} />
+						// ))
+					}
+				</div>
 			</div>
 		</Fragment>
 	);

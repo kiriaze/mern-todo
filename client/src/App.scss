@@ -1,5 +1,25 @@
-/* should these be in our GlobalStyle in root rather, instead of splitting styles between css and js? either way, keep it consistent, otherwise its a shit show */
-// consolidate at some point
+/* 
+should these be in our GlobalStyle in root rather, instead of splitting styles between css and js? either way, keep it consistent, otherwise its a shit show 
+
+Note: This might end up being a shame file
+
+@todo: consolidate at some point
+*/
+
+@font-face {
+	font-family: 'HKGroteskPro';
+	font-weight: 400;
+	src: url(./assets/fonts/HKGroteskPro/HKGroteskPro-Regular.woff2)
+			format('woff2'),
+		url(./assets/fonts/HKGroteskPro/HKGroteskPro-Regular.woff) format('woff');
+}
+@font-face {
+	font-family: 'HKGroteskPro';
+	font-weight: 600;
+	src: url(./assets/fonts/HKGroteskPro/HKGroteskPro-Medium.woff2)
+			format('woff2'),
+		url(./assets/fonts/HKGroteskPro/HKGroteskPro-Medium.woff) format('woff');
+}
 
 #root {
 	display: flex;
@@ -18,12 +38,15 @@
 	}
 }
 
-// should this be moved to theme.js?
+// should this be moved to theme.js or within Text?
 p {
 	margin: 2.4rem 0;
 	// line-height: 2.4rem;
 }
-
+ul,
+ol {
+	margin-left: 2rem;
+}
 .container {
 	width: 100%;
 	margin: 0 auto;
@@ -54,8 +77,11 @@ p {
 
 // i.e. header
 .navbar {
+	font-weight: 600;
 	line-height: 10rem;
-	background-color: lavender;
+	background-color: #fff;
+	// background-color: rgb(255, 247, 89);
+	border-bottom: 0.1rem solid #eee;
 	.container {
 		display: flex;
 		justify-content: space-between;
@@ -67,19 +93,6 @@ p {
 			& + li {
 				margin-left: 2rem;
 			}
-		}
-	}
-}
-
-.footer {
-	padding: 4rem 0;
-	background-color: wheat;
-	ul {
-		display: flex;
-		list-style: none;
-		justify-content: flex-end;
-		li + li {
-			margin-left: 2rem;
 		}
 	}
 }
@@ -110,11 +123,22 @@ p {
 	margin: auto;
 	padding: 4rem 5rem;
 	max-width: 40rem;
+	background: #fff;
 	border-radius: 0.75rem;
-	border: 0.1rem solid var(--theme-colors-baseLight);
-	box-shadow: 0rem 1rem 1rem var(--theme-colors-baseLight);
+	// border: 0.1rem solid var(--theme-colors-baseLight);
+	box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.08);
+	box-shadow: 0rem 2.5rem 5rem -1.2rem rgba(0, 0, 0, 0.25);
+	// box-shadow: 0rem 2.5rem 5rem -1.2rem var(--theme-colors-baseMedium);
+	h3 {
+		text-align: center;
+	}
+	.lead {
+		margin-top: 0;
+		text-align: center;
+	}
 	.form-footer {
-		margin-top: 2rem;
+		margin: 2rem 0 0;
+		text-align: center;
 	}
 }
 
@@ -127,15 +151,26 @@ p {
 	textarea {
 		width: 100%;
 		resize: none;
-		padding: 0.75rem 1rem;
-		border: 0.1rem solid var(--theme-colors-brandDivider);
+		padding: 0 1.25rem;
+		border: 0.1rem solid var(--theme-colors-baseLight);
+		border-radius: 0.25rem;
+		transition: border-color 0.35s ease;
 		&:focus {
 			outline: 0;
+			border-color: var(--theme-colors-baseMedium);
 		}
 	}
 	input {
+		line-height: 3.8rem;
 	}
 	textarea {
+		line-height: 1.5;
+		padding: 0.75rem 1rem;
+	}
+	+ button {
+		width: 100%;
+		margin: auto;
+		display: block;
 	}
 }
 

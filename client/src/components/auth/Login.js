@@ -22,7 +22,7 @@ const Login = ({ login, isAuthenticated }) => {
 		});
 	};
 
-	const onSubmit = e => {
+	const onSubmit = async e => {
 		e.preventDefault();
 		login({ email, password });
 	};
@@ -34,8 +34,8 @@ const Login = ({ login, isAuthenticated }) => {
 	return (
 		<Fragment>
 			<div className="form-wrapper">
-				<Heading level="1">Log In</Heading>
-				<p className="lead">Log into your account</p>
+				<Heading level="3">Log In</Heading>
+				<p className="lead">Sign into your account to continue</p>
 				<form className="" onSubmit={e => onSubmit(e)}>
 					<div className="form-group">
 						<input
@@ -56,7 +56,6 @@ const Login = ({ login, isAuthenticated }) => {
 							onChange={e => onChange(e)}
 						/>
 					</div>
-					{/*<input type="submit" className="btn" value="Submit" />*/}
 					<Button type="submit" variant="success">
 						Login
 					</Button>
