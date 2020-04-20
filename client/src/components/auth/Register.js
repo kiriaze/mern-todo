@@ -47,7 +47,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 					<div className="form-group">
 						<input
 							type="text"
-							placeholder="Frank Reynolds"
 							placeholder="Full Name"
 							name="name"
 							value={name}
@@ -57,7 +56,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 					<div className="form-group">
 						<input
 							type="email"
-							placeholder="frank@reynolds.com"
 							placeholder="Email Address"
 							name="email"
 							value={email}

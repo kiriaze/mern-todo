@@ -9,9 +9,10 @@ import { theme } from '../theme.js';
 // ${mq('large', 'max', 'portrait')} {
 // }
 // note: should 'type' be 'all, print, screen, speech' instead of 'min/max'?
-// @media screen and (min-width: 30em) and (orientation: landscape)
-let mq = (size, type = 'min', orientation = 'landscape') => `
-		@media (${type}-width: ${theme.breakpoints[size]}) and (orientation: ${orientation})
+let mq = (size, type = 'min', orientation) => `
+		@media (${type}-width: ${theme.breakpoints[size]}) ${
+	orientation ? `and (orientation: ${orientation})` : ''
+}
 	`;
 //
 
