@@ -8,6 +8,8 @@
 		"server": "nodemon server",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"setup": "npm install && npm install --prefix client && npm run dev",
+		"update": "npm-check --update",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
 	},
 	"author": "Constantine Kiriaze",
