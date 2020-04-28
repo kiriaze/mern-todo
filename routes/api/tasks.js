@@ -11,9 +11,12 @@ const Task = require('../../models/Task');
 // @access   Private
 router.get('/', auth, async (req, res) => {
 	try {
-		const tasks = await Task.find().sort({
-			date: -1 // most recent first; inverse for oldest first
-		});
+		const tasks = await Task.find()
+			.sort({
+				date: -1 // most recent first; inverse for oldest first
+			})
+			.populate('user', ['name', 'avatar'])
+			.populate('assignedTo', ['name', 'avatar']);
 		// @todo - Filter through tasks that match logged in user's ID with task author
 		// only return tasks that the user has access to;
 		// tasks created by the user
@@ -41,7 +44,9 @@ router.get('/', auth, async (req, res) => {
 // @access   Private
 router.get('/:id', auth, async (req, res) => {
 	try {
-		const task = await Task.findById(req.params.id);
+		const task = await Task.findById(req.params.id)
+			.populate('user', ['name', 'avatar'])
+			.populate('assignedTo', ['name', 'avatar']);
 
 		if (!task) {
 			return res.status(404).json({

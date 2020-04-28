@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { deleteAccount } from '../../actions/auth';
+import { deleteAccount } from '../../actions/profile';
 // import TaskForm from '../tasks/TaskForm';
 
 import Heading from '../ui/heading';
@@ -21,6 +20,13 @@ const Dashboard = ({ auth: { user }, deleteAccount }) => {
 					</StyledLink>
 					<StyledLink to="/add-task" variant="primary">
 						Add Task
+					</StyledLink>
+					<StyledLink to="/edit-profile" variant="info">
+						Edit Profile
+					</StyledLink>
+					<StyledLink to="/profiles">Profiles</StyledLink>
+					<StyledLink to={`/profile/${user && user._id}`}>
+						My Profile
 					</StyledLink>
 					<Button variant="danger" onClick={() => deleteAccount()}>
 						Delete my account

@@ -1,12 +1,9 @@
 import {
 	LOGIN_SUCCESS,
-	// LOGIN_FAIL,
 	REGISTER_SUCCESS,
-	// REGISTER_FAIL,
 	USER_LOADED,
 	AUTH_ERROR,
 	LOGOUT,
-	// CLEAR_PROFILE,
 	ACCOUNT_DELETED
 } from '../actions/types';
 

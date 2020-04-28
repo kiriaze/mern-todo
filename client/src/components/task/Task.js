@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Spinner from '../ui/spinner';
 import { getTask } from '../../actions/task';
 import TaskItem from '../tasks/TaskItem';
 // import CommentForm from './CommentForm';
 // import CommentItem from './CommentItem';
 
-import Heading from '../ui/heading';
+// import Heading from '../ui/heading';
 import { StyledLink } from '../ui/link';
 
 const Task = ({ getTask, task: { task, loading }, match }) => {

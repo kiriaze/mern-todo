@@ -8,7 +8,6 @@ import {
 	USER_LOADED,
 	AUTH_ERROR,
 	LOGOUT,
-	ACCOUNT_DELETED,
 	CLEAR_PROFILE
 } from './types';
 
@@ -102,29 +101,4 @@ export const logout = () => async dispatch => {
 	dispatch({
 		type: LOGOUT
 	});
-};
-
-// Delete user acount
-export const deleteAccount = () => async dispatch => {
-	if (window.confirm('Are you sure? This can NOT be undone!')) {
-		try {
-			await axios.delete('/api/users');
-
-			// should we remove the users data? e.g. tasks, comments, etc.
-
-			dispatch({
-				type: ACCOUNT_DELETED
-			});
-			dispatch(setAlert('Your account has been permanently deleted.'));
-		} catch (err) {
-			dispatch(setAlert(err.response.statusText));
-			// dispatch({
-			// 	type: PROFILE_ERROR,
-			// 	payload: {
-			// 		msg: err.response.statusText,
-			// 		status: err.response.status
-			// 	}
-			// });
-		}
-	}
 };

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { getTasks } from '../../actions/task';
 import Spinner from '../ui/spinner';
 import TaskItem from './TaskItem';
-import TaskForm from './TaskForm';
+// import TaskForm from './TaskForm';
 
-import Heading from '..//ui/heading';
+import Heading from '../ui/heading';
 
 const Tasks = ({ getTasks, task: { tasks, loading } }) => {
 	useEffect(() => {

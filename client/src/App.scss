@@ -120,7 +120,7 @@ ol {
 
 .form-wrapper {
 	width: 100%;
-	margin: auto;
+	margin: 10rem auto;
 	padding: 4rem 5rem;
 	max-width: 40rem;
 	background: #fff;
@@ -143,6 +143,10 @@ ol {
 }
 
 .form {
+}
+
+.form-text {
+	font-size: 1.1rem;
 }
 
 .form-group {

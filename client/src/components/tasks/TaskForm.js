@@ -7,6 +7,12 @@ import './taskForm.scss';
 
 import { Button } from '../ui/button';
 
+//
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker from 'react-modern-calendar-datepicker';
+import { utils } from 'react-modern-calendar-datepicker';
+//
+
 // @todo - replace with an external form component or add styles, etc..
 
 const initialState = {
@@ -43,10 +49,45 @@ const TaskForm = ({ addTask }) => {
 		});
 	};
 
+	// datepicker
+	const [selectedDay, setSelectedDay] = useState(null);
+	const formatInputValue = selectedDay => {
+		if (!selectedDay) return '';
+		let monthPrefix = selectedDay.month < 10 ? '0' : '';
+		return `${monthPrefix}${selectedDay.month}/${selectedDay.day}/${selectedDay.year}`;
+	};
+	// custom rendered input
+	const renderCustomInput = ({ ref }) => (
+		<input
+			name="dueDate"
+			readOnly
+			ref={ref} // necessary
+			placeholder="Select a date"
+			value={formatInputValue(selectedDay)}
+			style={{
+				textAlign: 'left',
+				outline: 'none'
+			}}
+			onBlur={ref => onDateChange(ref)}
+			className="my-custom-input-class" // a styling class
+		/>
+	);
+	const onDateChange = async e => {
+		// console.log(e);
+		setFormData({
+			...formData,
+			['dueDate']: e.target.value
+		});
+	};
+	//
+
 	const onSubmit = async e => {
 		e.preventDefault();
+		// console.log(formData);
+		// return;
 		addTask({ ...formData });
 		setFormData(initialState); // clear form
+		setSelectedDay();
 	};
 
 	return (
@@ -96,12 +137,20 @@ const TaskForm = ({ addTask }) => {
 				</div>
 
 				<div className="form-group">
-					<input
+					{/*<input
 						type="text"
 						placeholder="Due Date (MM/DD/YYYY)"
 						name="dueDate"
 						value={dueDate}
 						onChange={e => onChange(e)}
+					/>*/}
+					<DatePicker
+						value={selectedDay}
+						onChange={setSelectedDay}
+						minimumDate={utils().getToday()}
+						inputPlaceholder="Select a day"
+						shouldHighlightWeekends
+						renderInput={renderCustomInput}
 					/>
 				</div>
 

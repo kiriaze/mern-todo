@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { deleteTask } from '../../actions/task';
+import { getProfileById } from '../../actions/profile';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 
@@ -12,13 +13,9 @@ import styled from 'styled-components';
 
 const StyledItem = styled.div`
 	margin: 0 0 1rem;
-	// max-width: 40rem;
 	padding: 2rem 3rem;
 	background-color: #fff;
 	border: 0.1rem solid #eee;
-	&:first-child {
-		// margin-top: 0;
-	}
 `;
 //
 
@@ -36,35 +33,26 @@ const TaskItem = ({
 		date
 	},
 	deleteTask,
-	showActions
+	showActions,
+	getProfileById
 }) => {
 	return (
 		<StyledItem className="task-item">
 			<h4>
 				<Link to={`/tasks/${_id}`}>{title}</Link>
 			</h4>
-			<span>
+			<p>Issued by: {user.name}</p>
+			<p>
 				Issued on: <Moment format="MM/DD/YYYY">{date}</Moment>
-			</span>
-			<br />
-			<span>
+			</p>
+			<p>
 				Due on: <Moment format="MM/DD/YYYY">{dueDate}</Moment>
-			</span>
-			<br />
-			<span>Assigned to: {assignedTo}</span>
-			{/*5e7e8339fc348f1e19a6fd16*/}
-			<br />
+			</p>
+			{assignedTo && <p>Assigned to: {assignedTo.name}</p>}
 			<p>{description}</p>
 			{showActions && (
 				<Fragment>
 					{!auth.loading && user === auth.user._id && (
-						// <button
-						// 	onClick={e => deleteTask(_id)}
-						// 	type="button"
-						// 	className="btn btn-danger"
-						// >
-						// 	Delete Task
-						// </button>
 						<Button
 							variant="danger"
 							onClick={e => {
@@ -90,7 +78,8 @@ TaskItem.defaultProps = {
 TaskItem.propTypes = {
 	task: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
-	deleteTask: PropTypes.func.isRequired
+	deleteTask: PropTypes.func.isRequired,
+	getProfileById: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -98,5 +87,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-	deleteTask
+	deleteTask,
+	getProfileById
 })(TaskItem);
