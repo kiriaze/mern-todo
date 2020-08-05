@@ -44,6 +44,15 @@ npm run build
 - Create the application on heroku with `heroku create`.
 - And subsquently push to heroku with `git push heroku master`.
 
+<!--
+- Since we're ignoring the `./config/*.json` files which Heroku requires for a successful build, we should create a local only branch (e.g. production) to deploy from: 	- `git checkout -b production`
+- Add the config file into our track: `git add -f config/production.json`
+- Commit your changes; `git commit -am 'deploy...'`
+- Push up your local production branch for deployment; `git push heroku production:master`
+- Don't forget to make sure your production database is not whitelisted in MongoDB Atlas, otherwise the database connection will fail and your app will crash.
+- For subsequent changes, work off master and merge those into your local branch when ready to rebuild/deploy.
+ -->
+
 #### Todo's
 
 - Add a `./Merndo.postman_collection.json` to rapidly setup the endpoints.

@@ -19,6 +19,8 @@ svg {
 	display: inline-block;
 	fill: currentcolor;
 	line-height: 0;
+	margin: auto;
+	text-align: center;
 }
 .icon > * {
 	transform: translate(0, 0);
