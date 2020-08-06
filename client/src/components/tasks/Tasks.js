@@ -7,6 +7,16 @@ import TaskItem from './TaskItem';
 // import TaskForm from './TaskForm';
 
 import Heading from '../ui/heading';
+import styled from 'styled-components';
+
+const TaskContainer = styled.div`
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-between;
+	> div {
+		width: 24%;
+	}
+`;
 
 const Tasks = ({ getTasks, task: { tasks, loading } }) => {
 	useEffect(() => {
@@ -19,11 +29,11 @@ const Tasks = ({ getTasks, task: { tasks, loading } }) => {
 			<div className="container">
 				<Heading level="1">Tasks</Heading>
 				<p className="lead">Here's whats going on..</p>
-				<div className="tasks">
+				<TaskContainer>
 					{tasks &&
 						tasks.length > 0 &&
 						tasks.map(task => <TaskItem key={task._id} task={task} />)}
-				</div>
+				</TaskContainer>
 			</div>
 		</Fragment>
 	);

@@ -7,8 +7,22 @@ import TaskItem from '../tasks/TaskItem';
 // import CommentForm from './CommentForm';
 // import CommentItem from './CommentItem';
 
-// import Heading from '../ui/heading';
+import Heading from '../ui/heading';
 import { StyledLink } from '../ui/link';
+
+import styled from 'styled-components'
+
+const TopBar = styled.div`
+	display: flex;
+	margin: 2rem 0;
+	justify-content: space-between;
+`;
+
+const UserActions = styled.div `
+	> * {
+		margin: 0 0 0 1rem
+	}
+`;
 
 const Task = ({ getTask, task: { task, loading }, match }) => {
 	useEffect(() => {
@@ -19,15 +33,18 @@ const Task = ({ getTask, task: { task, loading }, match }) => {
 	) : (
 		<Fragment>
 			<div className="container">
-				{/*<Heading level="1">Tasks</Heading>*/}
-				{/*<p className="lead">Here's whats going on..</p>*/}
-				<div className="user-actions">
-					<StyledLink to="/tasks" variant="info">
-						Back to tasks
-					</StyledLink>
-				</div>
-				<TaskItem task={task} showActions={false} />
-				{/*<CommentForm taskId={task._id} />*/}
+				<TopBar>
+					<Heading level="5">{task.title}</Heading>
+					<UserActions>
+						<StyledLink to="/tasks" variant="info">
+							Back to tasks
+						</StyledLink>
+						<StyledLink to="" variant="success">Mark Complete</StyledLink>
+						<StyledLink to="" variant="danger">Delete</StyledLink>
+					</UserActions>
+				</TopBar>
+				<TaskItem task={task} showActions={true} />
+				{/* <CommentForm taskId={task._id} /> */}
 				<div className="comments">
 					{
 						// task.comments.map(comment => (

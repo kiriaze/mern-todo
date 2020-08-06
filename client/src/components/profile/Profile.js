@@ -5,6 +5,18 @@ import Spinner from '../ui/spinner';
 import PropTypes from 'prop-types';
 import { getProfileById } from '../../actions/profile';
 
+import { StyledLink } from '../ui/link'
+import Heading from '../ui/heading'
+import styled from 'styled-components'
+import './profile.scss'
+
+const UserActions = styled.div`
+	margin: 2rem 0;
+	> a:last-child {
+		margin-left: 1rem;
+	}
+`;
+
 const Profile = ({
 	getProfileById,
 	profile: { profile, loading },
@@ -22,29 +34,30 @@ const Profile = ({
 			) : (
 				<Fragment>
 					<div className="container">
-						<Link to="/profiles" className="btn btn-light">
-							Back to profiles
-						</Link>
-						{auth.isAuthenticated &&
-							!auth.loading &&
-							auth.user._id === profile.user._id && (
-								<Link to="/edit-profile" className="btn btn-dark">
-									Edit Profile
-								</Link>
+						<UserActions>
+							<StyledLink to="/profiles" variant="secondary">
+								Back to profiles
+							</StyledLink>
+							{auth.isAuthenticated &&
+								!auth.loading &&
+								auth.user._id === profile.user._id && (
+									<StyledLink to="/edit-profile" variant="info">
+										Edit Profile
+									</StyledLink>
+								)}
+						</UserActions>
+						<div className="profile-wrapper">
+							<img className="round-img" src={profile.user.avatar} alt="" />
+							<Heading level="4">{profile.user.name}</Heading>
+							<p className="lead">Works at: {profile.company}</p>
+							<p>Based in: {profile.location}</p>
+							{profile.bio && (
+								<Fragment>
+									<Heading level="6">{profile.user.name.split(' ')[0]}'s Bio</Heading>
+									{profile.bio && <p>{profile.bio}</p>}
+								</Fragment>
 							)}
-						<img className="round-img my-1" src={profile.user.avatar} alt="" />
-						<h1 className="large">{profile.user.name}</h1>
-						<p className="lead">at {profile.company}</p>
-						<p>{profile.location}</p>
-						{profile.bio && (
-							<Fragment>
-								<h2 className="text-primary">
-									{profile.user.name.split(' ')[0]}'s Bio
-								</h2>
-								<p>{profile.bio}</p>
-								<div className="line"></div>
-							</Fragment>
-						)}
+						</div>
 					</div>
 				</Fragment>
 			)}

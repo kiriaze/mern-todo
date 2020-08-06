@@ -7,8 +7,8 @@ import { getProfileById } from '../../actions/profile';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 
-// which is better? more sustainable? cleaner? simpler? more effecient? quicker to proto? better maintained in larger teams?
-// // import './taskItem.scss';
+// proto in scss, then translate to styled-components
+// import './taskItem.scss';
 import styled from 'styled-components';
 
 const StyledItem = styled.div`
@@ -49,10 +49,10 @@ const TaskItem = ({
 				Due on: <Moment format="MM/DD/YYYY">{dueDate}</Moment>
 			</p>
 			{assignedTo && <p>Assigned to: {assignedTo.name}</p>}
-			<p>{description}</p>
+			{description && <p>{description}</p>}
 			{showActions && (
 				<Fragment>
-					{!auth.loading && user === auth.user._id && (
+					{!auth.loading && user._id === auth.user._id && (
 						<Button
 							variant="danger"
 							onClick={e => {
